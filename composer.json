@@ -1,32 +1,33 @@
 {
-  "name": "alecrabbit/php-console-colour",
+  "name": "alecrabbit/php-cli-tools",
   "type": "library",
-  "description": "Helps to do colored console output.",
+  "description": "CLI tools for php.",
   "keywords": [
     "console",
-    "color",
-    "colour",
     "ansi",
+    "control",
     "terminal",
     "width",
     "height",
-    "output"
+    "title",
+    "cli"
   ],
   "license": "MIT",
   "require": {
-    "php": "^7.2",
-    "alecrabbit/php-traits": "^0.2"
+    "php": "^7.2"
   },
   "require-dev": {
     "nunomaduro/collision": "^3.0",
     "phpunit/phpunit": "^8.0",
-    "symfony/var-dumper": "^4.2",
-    "alecrabbit/php-helpers": "^0.5.1"
+    "symfony/var-dumper": "^4.2"
   },
   "autoload": {
     "psr-4": {
-      "AlecRabbit\\": "src"
-    }
+      "AlecRabbit\\Cli\\Tools\\": "src\\Cli\\Tools"
+    },
+    "files": [
+      "src/bootstrap.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
