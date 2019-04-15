@@ -66,11 +66,11 @@ class TerminalTest extends TestCase
         $title = 'Title';
         $this->assertEquals(
             Helper::stripEscape("\033]0;{$title}\007"),
-            Helper::stripEscape($terminal->setTitle($title))
+            Helper::stripEscape(Terminal::setTitle($title))
         );
         $this->assertEquals(
             "\033]0;{$title}\007",
-            $terminal->setTitle($title)
+            Terminal::setTitle($title)
         );
     }
 

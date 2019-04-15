@@ -39,5 +39,5 @@ interface TerminalInterface
      * @param string $title
      * @return string
      */
-    public function setTitle(string $title): string;
+    public static function setTitle(string $title): string;
 }

@@ -119,19 +119,19 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     /**
      * @return bool
      */
-    protected function isXterm():bool
+    protected static function isXterm():bool
     {
         if (null !== static::$isXterm) {
             return static::$isXterm;
         }
         return
-            static::$isXterm = $this->isXtermTerminal();
+            static::$isXterm = static::isXtermTerminal();
     }
 
     /**
      * @return bool
      */
-    protected function isXtermTerminal():bool
+    protected static function isXtermTerminal():bool
     {
         return
             static::checkEnvVariable(static::ENV_TERM, self::XTERM) ||

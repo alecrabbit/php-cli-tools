@@ -54,9 +54,9 @@ class Terminal extends AbstractColorSupportingTerminal implements TerminalInterf
     }
 
     /** {@inheritdoc} */
-    public function setTitle(string $title): string
+    public static function setTitle(string $title): string
     {
-        if ($this->isXterm()) {
+        if (static::isXterm()) {
             return "\033]0;{$title}\007";
         }
         // @codeCoverageIgnoreStart
