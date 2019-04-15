@@ -12,6 +12,6 @@ class Helper
      */
     public static function stripEscape(string $str)
     {
-        return str_replace(ESC, '\033', $str);
+        return str_replace(ESC, '\e', $str);
     }
 }

@@ -122,5 +122,4 @@ class Cursor
     {
         return self::ESC . '8';
     }
-
 }
