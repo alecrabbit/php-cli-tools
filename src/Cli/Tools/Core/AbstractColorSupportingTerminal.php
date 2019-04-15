@@ -73,8 +73,8 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     {
         return
             $this->supportsColor() ?
-                $this->checkEnvVariable(static::ENV_TERM, static::COLOR_NEEDLE) ||
-                $this->checkEnvVariable(static::ENV_DOCKER_TERM, static::COLOR_NEEDLE) :
+                static::checkEnvVariable(static::ENV_TERM, static::COLOR_NEEDLE) ||
+                static::checkEnvVariable(static::ENV_DOCKER_TERM, static::COLOR_NEEDLE) :
                 false;
     }
 
@@ -83,7 +83,7 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
      * @param string $checkFor
      * @return bool
      */
-    protected function checkEnvVariable(string $varName, string $checkFor): bool
+    protected static function checkEnvVariable(string $varName, string $checkFor): bool
     {
         if ($t = getenv($varName)) {
             return
@@ -134,7 +134,7 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     protected function isXtermTerminal():bool
     {
         return
-            $this->checkEnvVariable(static::ENV_TERM, self::XTERM) ||
-            $this->checkEnvVariable(static::ENV_DOCKER_TERM, self::XTERM);
+            static::checkEnvVariable(static::ENV_TERM, self::XTERM) ||
+            static::checkEnvVariable(static::ENV_DOCKER_TERM, self::XTERM);
     }
 }
