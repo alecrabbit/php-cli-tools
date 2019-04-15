@@ -3,20 +3,20 @@
 namespace AlecRabbit\Tests\ConsoleColour;
 
 use AlecRabbit\Cli\Tools\Core\TerminalCore;
-use AlecRabbit\Cli\Tools\Terminal;
 use AlecRabbit\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use function AlecRabbit\Helpers\callMethod;
 
-class TerminalTest extends TestCase
+class TerminalCoreTest extends TestCase
 {
     /** @test */
     public function basic(): void
     {
         putenv('COLUMNS=100');
         putenv('LINES=50');
-        $this->assertSame(100, Terminal::width(true));
-        $this->assertSame(50, Terminal::height(true));
+        $terminal = new TerminalCore();
+        $this->assertSame(100, $terminal->width());
+        $this->assertSame(50, $terminal->height());
 
         putenv('COLUMNS=120');
         putenv('LINES=60');
@@ -57,20 +57,6 @@ class TerminalTest extends TestCase
         $this->assertFalse(callMethod($terminal, 'checkEnvVariable', 'UNKNOWN_VAR', 'value'));
     }
 
-    /** @test */
-    public function setTitle(): void
-    {
-        $title = 'Title';
-        $this->assertEquals(
-            Helper::stripEscape("\033]0;{$title}\007"),
-            Helper::stripEscape(TerminalCore::setTitle($title))
-        );
-        $this->assertEquals(
-            "\033]0;{$title}\007",
-            TerminalCore::setTitle($title)
-        );
-    }
-
     /**
      * @param string $varName
      * @return bool
@@ -82,6 +68,22 @@ class TerminalTest extends TestCase
                 false !== strpos($t, '256color');
         }
         return false;
+    }
+
+    /** @test */
+    public function setTitle(): void
+    {
+        $terminal = new TerminalCore();
+
+        $title = 'Title';
+        $this->assertEquals(
+            Helper::stripEscape("\033]0;{$title}\007"),
+            Helper::stripEscape(TerminalCore::setTitle($title))
+        );
+        $this->assertEquals(
+            "\033]0;{$title}\007",
+            TerminalCore::setTitle($title)
+        );
     }
 
 }
