@@ -21,6 +21,28 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     protected static $isXterm;
 
     /**
+     * @return bool
+     */
+    protected static function isXterm(): bool
+    {
+        if (null !== static::$isXterm) {
+            return static::$isXterm;
+        }
+        return
+            static::$isXterm = static::isXtermTerminal();
+    }
+
+    /**
+     * @return bool
+     */
+    protected static function isXtermTerminal(): bool
+    {
+        return
+            static::checkEnvVariable(static::ENV_TERM, self::XTERM) ||
+            static::checkEnvVariable(static::ENV_DOCKER_TERM, self::XTERM);
+    }
+
+    /**
      * Returns true if the stream supports colorization.
      *
      * Colorization is disabled if not supported by the stream:
@@ -36,7 +58,7 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
      *
      * @return bool true if the stream supports colorization, false otherwise
      */
-    protected function hasColorSupport(): bool
+    protected static function hasColorSupport(): bool
     {
         if ('Hyper' === getenv(static::ENV_TERM_PROGRAM)) {
             // @codeCoverageIgnoreStart
@@ -46,7 +68,7 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
 
         // @codeCoverageIgnoreStart
         if (static::onWindows()) {
-            return $this->checkWindowsColorSupport();
+            return static::checkWindowsColorSupport();
         }
         // @codeCoverageIgnoreEnd
 
@@ -64,39 +86,11 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
         // @codeCoverageIgnoreEnd
     }
 
-    abstract public function supportsColor(bool $recheck = false): bool;
-
-    /**
-     * @return bool
-     */
-    protected function has256ColorSupport(): bool
-    {
-        return
-            $this->supportsColor() ?
-                static::checkEnvVariable(static::ENV_TERM, static::COLOR_NEEDLE) ||
-                static::checkEnvVariable(static::ENV_DOCKER_TERM, static::COLOR_NEEDLE) :
-                false;
-    }
-
-    /**
-     * @param string $varName
-     * @param string $checkFor
-     * @return bool
-     */
-    protected static function checkEnvVariable(string $varName, string $checkFor): bool
-    {
-        if ($t = getenv($varName)) {
-            return
-                false !== strpos($t, $checkFor);
-        }
-        return false;
-    }
-
     /**
      * @return bool
      * @codeCoverageIgnore
      */
-    protected function checkWindowsColorSupport(): bool
+    protected static function checkWindowsColorSupport(): bool
     {
         return (\function_exists('sapi_windows_vt100_support')
                 && @sapi_windows_vt100_support(STDOUT))
@@ -119,22 +113,28 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     /**
      * @return bool
      */
-    protected static function isXterm():bool
+    protected static function has256ColorSupport(): bool
     {
-        if (null !== static::$isXterm) {
-            return static::$isXterm;
-        }
         return
-            static::$isXterm = static::isXtermTerminal();
+            static::supportsColor() ?
+                static::checkEnvVariable(static::ENV_TERM, static::COLOR_NEEDLE) ||
+                static::checkEnvVariable(static::ENV_DOCKER_TERM, static::COLOR_NEEDLE) :
+                false;
     }
 
+    abstract public static function supportsColor(bool $recheck = false): bool;
+
     /**
+     * @param string $varName
+     * @param string $checkFor
      * @return bool
      */
-    protected static function isXtermTerminal():bool
+    protected static function checkEnvVariable(string $varName, string $checkFor): bool
     {
-        return
-            static::checkEnvVariable(static::ENV_TERM, self::XTERM) ||
-            static::checkEnvVariable(static::ENV_DOCKER_TERM, self::XTERM);
+        if ($t = getenv($varName)) {
+            return
+                false !== strpos($t, $checkFor);
+        }
+        return false;
     }
 }

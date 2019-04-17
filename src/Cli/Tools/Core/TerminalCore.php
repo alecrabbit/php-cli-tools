@@ -3,6 +3,9 @@
 namespace AlecRabbit\Cli\Tools\Core;
 
 use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
+use const AlecRabbit\COLOR256_TERMINAL;
+use const AlecRabbit\COLOR_TERMINAL;
+use const AlecRabbit\NO_COLOR_TERMINAL;
 
 /**
  * Class Terminal
@@ -12,44 +15,23 @@ class TerminalCore extends AbstractColorSupportingTerminal implements TerminalIn
 {
 
     /** {@inheritdoc} */
-    public function width(bool $recheck = false): int
-    {
-        if (null !== static::$width && true !== $recheck) {
-            return static::$width;
-        }
-        return
-            static::$width = $this->getWidth();
-    }
-
-
-    /** {@inheritdoc} */
-    public function height(bool $recheck = false): int
-    {
-        if (null !== static::$height && true !== $recheck) {
-            return static::$height;
-        }
-        return
-            static::$height = $this->getHeight();
-    }
-
-    /** {@inheritdoc} */
-    public function supports256Color(bool $recheck = false): bool
+    public static function supports256Color(bool $recheck = false): bool
     {
         if (null !== static::$supports256Color && true !== $recheck) {
             return static::$supports256Color;
         }
         return
-            static::$supports256Color = $this->has256ColorSupport();
+            static::$supports256Color = static::has256ColorSupport();
     }
 
     /** {@inheritdoc} */
-    public function supportsColor(bool $recheck = false): bool
+    public static function supportsColor(bool $recheck = false): bool
     {
         if (null !== static::$supportsColor && false === $recheck) {
             return static::$supportsColor;
         }
         return
-            static::$supportsColor = $this->hasColorSupport();
+            static::$supportsColor = static::hasColorSupport();
     }
 
     /** {@inheritdoc} */
@@ -61,5 +43,37 @@ class TerminalCore extends AbstractColorSupportingTerminal implements TerminalIn
         // @codeCoverageIgnoreStart
         return (string)null;
         // @codeCoverageIgnoreEnd
+    }
+
+    /** {@inheritdoc} */
+    public static function width(bool $recheck = false): int
+    {
+        if (null !== static::$width && true !== $recheck) {
+            return static::$width;
+        }
+        return
+            static::$width = static::getWidth();
+    }
+
+    /** {@inheritdoc} */
+    public static function height(bool $recheck = false): int
+    {
+        if (null !== static::$height && true !== $recheck) {
+            return static::$height;
+        }
+        return
+            static::$height = static::getHeight();
+    }
+
+    /** {@inheritdoc} */
+    public static function colorSupport(): int
+    {
+        if (static::supportsColor()) {
+            return
+                static::supports256Color() ?
+                    COLOR256_TERMINAL :
+                    COLOR_TERMINAL;
+        }
+        return NO_COLOR_TERMINAL;
     }
 }

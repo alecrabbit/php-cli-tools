@@ -13,25 +13,25 @@ interface TerminalInterface
      * @param bool $recheck
      * @return int
      */
-    public function width(bool $recheck = false): int;
+    public static function width(bool $recheck = false): int;
 
     /**
      * @param bool $recheck
      * @return int
      */
-    public function height(bool $recheck = false): int;
+    public static function height(bool $recheck = false): int;
 
     /**
      * @param bool $recheck
      * @return bool
      */
-    public function supports256Color(bool $recheck = false): bool;
+    public static function supports256Color(bool $recheck = false): bool;
 
     /**
      * @param bool $recheck
      * @return bool
      */
-    public function supportsColor(bool $recheck = false): bool;
+    public static function supportsColor(bool $recheck = false): bool;
 
     /**
      * Returns set title ESC sequence
@@ -40,4 +40,11 @@ interface TerminalInterface
      * @return string
      */
     public static function setTitle(string $title): string;
+
+    /**
+     * Returns color support level
+     *
+     * @return int
+     */
+    public static function colorSupport(): int;
 }

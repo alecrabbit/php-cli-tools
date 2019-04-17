@@ -149,7 +149,7 @@ abstract class AbstractTerminal
      *
      * @return int
      */
-    protected function getWidth(): int
+    protected static function getWidth(): int
     {
         $width = getenv(static::ENV_COLUMNS);
         if (false !== $width) {
@@ -168,7 +168,7 @@ abstract class AbstractTerminal
      *
      * @return int
      */
-    protected function getHeight(): int
+    protected static function getHeight(): int
     {
         $height = getenv(static::ENV_LINES);
         if (false !== $height) {
