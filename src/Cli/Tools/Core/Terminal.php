@@ -11,7 +11,7 @@ use const AlecRabbit\NO_COLOR_TERMINAL;
  * Class Terminal
  * @author AlecRabbit
  */
-class TerminalCore extends AbstractColorSupportingTerminal implements TerminalInterface
+class Terminal extends AbstractColorSupportingTerminal implements TerminalInterface
 {
 
     /** {@inheritdoc} */
@@ -74,6 +74,8 @@ class TerminalCore extends AbstractColorSupportingTerminal implements TerminalIn
                     COLOR256_TERMINAL :
                     COLOR_TERMINAL;
         }
+        // @codeCoverageIgnoreStart
         return NO_COLOR_TERMINAL;
+        // @codeCoverageIgnoreEnd
     }
 }

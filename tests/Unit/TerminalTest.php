@@ -68,9 +68,9 @@ class TerminalTest extends TestCase
     public function throws(array $expected, array $args): void
     {
         [$width, $height, $color] = $args;
-        [$exceptionClass, $exceptionMessage] = $expected;
+        [$exceptionClass, $expectedExceptionMessage] = $expected;
         $this->expectException($exceptionClass);
-        $this->expectExceptionMessage($exceptionMessage);
+        $this->expectExceptionMessage($expectedExceptionMessage);
         new Terminal($width, $height, $color);
     }
 
@@ -83,7 +83,7 @@ class TerminalTest extends TestCase
             ],
             [
                 [\RuntimeException::class, 'Terminal size bounds exceeded.'],
-                [-10, -10, NO_COLOR_TERMINAL],
+                [-10, 30, NO_COLOR_TERMINAL],
             ],
             [
                 [\RuntimeException::class, 'Terminal size bounds exceeded.'],

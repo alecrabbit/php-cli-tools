@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Tests\ConsoleColour;
 
-use AlecRabbit\Cli\Tools\Core\TerminalCore;
+use AlecRabbit\Cli\Tools\Core\Terminal;
 use AlecRabbit\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use function AlecRabbit\Helpers\callMethod;
@@ -15,16 +15,16 @@ class TerminalCoreTest extends TestCase
         putenv('COLUMNS=100');
         putenv('LINES=50');
 
-        $this->assertSame(100, TerminalCore::width());
-        $this->assertSame(50, TerminalCore::height());
+        $this->assertSame(100, Terminal::width());
+        $this->assertSame(50, Terminal::height());
 
         putenv('COLUMNS=120');
         putenv('LINES=60');
 
-        $this->assertNotEquals(120, TerminalCore::width());
-        $this->assertNotEquals(60, TerminalCore::height());
-        $this->assertSame(120, TerminalCore::width(true));
-        $this->assertSame(60, TerminalCore::height(true));
+        $this->assertNotEquals(120, Terminal::width());
+        $this->assertNotEquals(60, Terminal::height());
+        $this->assertSame(120, Terminal::width(true));
+        $this->assertSame(60, Terminal::height(true));
     }
 
     /** @test */
@@ -33,25 +33,25 @@ class TerminalCoreTest extends TestCase
         putenv('COLUMNS=0');
         putenv('LINES=0');
 
-        $this->assertNotEquals(0, TerminalCore::width());
-        $this->assertNotEquals(0, TerminalCore::height());
-        $this->assertSame(0, TerminalCore::width(true));
-        $this->assertSame(0, TerminalCore::height(true));
+        $this->assertNotEquals(0, Terminal::width());
+        $this->assertNotEquals(0, Terminal::height());
+        $this->assertSame(0, Terminal::width(true));
+        $this->assertSame(0, Terminal::height(true));
     }
 
     /** @test */
     public function colorSupport(): void
     {
-        $this->assertTrue(TerminalCore::supportsColor());
+        $this->assertTrue(Terminal::supportsColor());
         if ($this->checkTermVarFor256ColorSupport('TERM') ||
             $this->checkTermVarFor256ColorSupport('DOCKER_TERM')) {
-            $this->assertTrue(TerminalCore::supports256Color());
-            $this->assertTrue(TerminalCore::supports256Color());
+            $this->assertTrue(Terminal::supports256Color());
+            $this->assertTrue(Terminal::supports256Color());
         } else {
-            $this->assertFalse(TerminalCore::supports256Color());
-            $this->assertFalse(TerminalCore::supports256Color());
+            $this->assertFalse(Terminal::supports256Color());
+            $this->assertFalse(Terminal::supports256Color());
         }
-        $this->assertFalse(callMethod(new TerminalCore(), 'checkEnvVariable', 'UNKNOWN_VAR', 'value'));
+        $this->assertFalse(callMethod(new Terminal(), 'checkEnvVariable', 'UNKNOWN_VAR', 'value'));
     }
 
     /**
@@ -73,11 +73,11 @@ class TerminalCoreTest extends TestCase
         $title = 'Title';
         $this->assertEquals(
             Helper::stripEscape("\033]0;{$title}\007"),
-            Helper::stripEscape(TerminalCore::setTitle($title))
+            Helper::stripEscape(Terminal::setTitle($title))
         );
         $this->assertEquals(
             "\033]0;{$title}\007",
-            TerminalCore::setTitle($title)
+            Terminal::setTitle($title)
         );
     }
 
