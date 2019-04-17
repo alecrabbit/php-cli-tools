@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools;
 
-use AlecRabbit\Cli\Tools\Core\Terminal as CoreTerminal;
+use AlecRabbit\Cli\Tools\Core\TerminalStatic as CoreTerminal;
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 
 class Terminal

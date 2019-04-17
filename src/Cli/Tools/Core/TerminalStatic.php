@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
-use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
+use AlecRabbit\Cli\Tools\Core\Contracts\TerminalStaticInterface;
 use const AlecRabbit\COLOR256_TERMINAL;
 use const AlecRabbit\COLOR_TERMINAL;
 use const AlecRabbit\NO_COLOR_TERMINAL;
@@ -11,7 +11,7 @@ use const AlecRabbit\NO_COLOR_TERMINAL;
  * Class Terminal
  * @author AlecRabbit
  */
-class Terminal extends AbstractColorSupportingTerminal implements TerminalInterface
+class TerminalStatic extends AbstractColorSupportingTerminal implements TerminalStaticInterface
 {
 
     /** {@inheritdoc} */
