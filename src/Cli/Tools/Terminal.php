@@ -2,10 +2,11 @@
 
 namespace AlecRabbit\Cli\Tools;
 
+use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
 use AlecRabbit\Cli\Tools\Core\TerminalStatic;
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 
-class Terminal
+class Terminal implements TerminalInterface
 {
     protected const MIN_WIDTH = 20;
     protected const MAX_WIDTH = 280;
