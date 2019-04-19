@@ -7,4 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/alecrabbit/php-cli-tools/compare/0.0.0...HEAD
+## [0.0.2] - 2019-04-19
+### Changed
+ - `inRange()` function moved to `alecrabbit/php-helpers`
+
+
+[Unreleased]: https://github.com/alecrabbit/php-cli-tools/compare/0.0.2...HEAD
+[0.0.2]: https://github.com/alecrabbit/php-cli-tools/compare/0.0.0...0.0.2
+
