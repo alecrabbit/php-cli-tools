@@ -36,19 +36,6 @@ class TerminalTest extends TestCase
         $this->assertContains($terminal->color(), ALLOWED_COLOR_TERMINAL);
     }
 
-    /**
-     * @test
-     * @dataProvider inRangeDataProvider
-     *
-     * @param bool $expected
-     * @param array $arguments
-     */
-    public function inRange(bool $expected, array $arguments): void
-    {
-        $terminal = new Terminal();
-        $this->assertSame($expected, callMethod($terminal, 'inRange', ...$arguments));
-    }
-
     public function basicDataProvider(): array
     {
         return

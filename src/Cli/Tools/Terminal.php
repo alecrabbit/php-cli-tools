@@ -5,6 +5,7 @@ namespace AlecRabbit\Cli\Tools;
 use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
 use AlecRabbit\Cli\Tools\Core\TerminalStatic;
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
+use function AlecRabbit\Helpers\inRange;
 
 class Terminal implements TerminalInterface
 {
@@ -39,7 +40,7 @@ class Terminal implements TerminalInterface
 
     protected function assertWidth(?int $width): void
     {
-        if (null !== $width && !$this->inRange($width, static::MIN_WIDTH, static::MAX_WIDTH)) {
+        if (null !== $width && !inRange($width, static::MIN_WIDTH, static::MAX_WIDTH)) {
             throw new \RuntimeException('Terminal size bounds exceeded.');
         }
     }
@@ -56,7 +57,7 @@ class Terminal implements TerminalInterface
 
     protected function assertHeight(?int $height): void
     {
-        if (null !== $height && !$this->inRange($height, static::MIN_HEIGHT, static::MAX_HEIGHT)) {
+        if (null !== $height && !inRange($height, static::MIN_HEIGHT, static::MAX_HEIGHT)) {
             throw new \RuntimeException('Terminal size bounds exceeded.');
         }
     }
@@ -103,19 +104,5 @@ class Terminal implements TerminalInterface
     public function color(): int
     {
         return $this->color;
-    }
-
-    /**
-     * @param int $value
-     * @param int $min
-     * @param int $max
-     * @return bool
-     */
-    protected function inRange(int $value, int $min, int $max): bool
-    {
-        if ($min > $max) {
-            [$min, $max] = [$max, $min];
-        }
-        return ($min <= $value && $value <= $max);
     }
 }
