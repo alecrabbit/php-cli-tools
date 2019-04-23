@@ -6,8 +6,6 @@ use const AlecRabbit\ESC;
 
 class Cursor
 {
-    protected const ESC = ESC;
-
     /**
      * Show cursor sequence
      *
@@ -15,7 +13,7 @@ class Cursor
      */
     public static function show(): string
     {
-        return self::ESC . '[?25h' . self::ESC . '[?0c';
+        return ESC . '[?25h' . ESC . '[?0c';
     }
 
     /**
@@ -25,7 +23,7 @@ class Cursor
      */
     public static function hide(): string
     {
-        return self::ESC . '[?25l';
+        return ESC . '[?25l';
     }
 
     /**
@@ -36,7 +34,7 @@ class Cursor
      */
     public static function up(int $rows = 1): string
     {
-        return self::ESC . "[{$rows}A";
+        return ESC . "[{$rows}A";
     }
 
     /**
@@ -47,7 +45,7 @@ class Cursor
      */
     public static function down(int $rows = 1): string
     {
-        return self::ESC . "[{$rows}B";
+        return ESC . "[{$rows}B";
     }
 
     /**
@@ -58,7 +56,7 @@ class Cursor
      */
     public static function forward(int $cols = 1): string
     {
-        return self::ESC . "[{$cols}C";
+        return ESC . "[{$cols}C";
     }
 
     /**
@@ -69,7 +67,7 @@ class Cursor
      */
     public static function back(int $cols = 1): string
     {
-        return self::ESC . "[{$cols}D";
+        return ESC . "[{$cols}D";
     }
 
     /**
@@ -81,7 +79,7 @@ class Cursor
      */
     public static function goTo(int $col = 1, int $row = 1): string
     {
-        return self::ESC . "[{$row};{$col}f";
+        return ESC . "[{$row};{$col}f";
     }
 
     /**
@@ -91,7 +89,7 @@ class Cursor
      */
     public static function savePosition(): string
     {
-        return self::ESC . '[s';
+        return ESC . '[s';
     }
 
     /**
@@ -101,7 +99,7 @@ class Cursor
      */
     public static function restorePosition(): string
     {
-        return self::ESC . '[u';
+        return ESC . '[u';
     }
     /**
      * Save cursor position and attributes sequence
@@ -110,7 +108,7 @@ class Cursor
      */
     public static function save(): string
     {
-        return self::ESC . '7';
+        return ESC . '7';
     }
 
     /**
@@ -120,6 +118,6 @@ class Cursor
      */
     public static function restore(): string
     {
-        return self::ESC . '8';
+        return ESC . '8';
     }
 }
