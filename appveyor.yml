@@ -13,8 +13,8 @@ environment:
     - PHP_VERSION: '7.2'
       XDEBUG_VERSION: '2.6.1-7.2'
       DEPENDENCIES: '--prefer-lowest'
-    - PHP_VERSION: '7.2'
-      XDEBUG_VERSION: '2.6.1-7.2'
+    - PHP_VERSION: '7.3'
+      XDEBUG_VERSION: '2.7.0-7.3'
       DEPENDENCIES: ''
 
 matrix:
@@ -56,4 +56,4 @@ install:
 
 test_script:
   - cd c:\phptools
-  - php phpunit
+  - vendor\bin\phpunit.bat
