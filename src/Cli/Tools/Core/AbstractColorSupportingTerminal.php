@@ -92,12 +92,6 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
      */
     protected static function checkWindowsColorSupport(): bool
     {
-        dump(\function_exists('sapi_windows_vt100_support')
-            && @sapi_windows_vt100_support(STDOUT));
-        dump(false !== getenv(static::ENV_ANSICON));
-        dump('ON' === getenv(static::ENV_CON_EMU_ANSI));
-        dump(  self::XTERM === getenv(static::ENV_TERM));
-        
         return (\function_exists('sapi_windows_vt100_support')
                 && @sapi_windows_vt100_support(STDOUT))
             || false !== getenv(static::ENV_ANSICON)

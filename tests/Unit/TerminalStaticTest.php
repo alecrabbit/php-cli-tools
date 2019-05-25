@@ -42,7 +42,7 @@ class TerminalStaticTest extends TestCase
     /** @test */
     public function colorSupport(): void
     {
-        $this->assertTrue(TerminalStatic::supportsColor());
+        $this->assertIsBool(TerminalStatic::supportsColor());
         if ($this->checkTermVarFor256ColorSupport('TERM') ||
             $this->checkTermVarFor256ColorSupport('DOCKER_TERM')) {
             $this->assertTrue(TerminalStatic::supports256Color());
