@@ -1,4 +1,5 @@
 build: false
+image: Visual Studio 2017
 clone_folder: c:\phptools
 max_jobs: 3
 platform: x86
