@@ -52,7 +52,7 @@ install:
   - IF NOT EXIST php-installed.txt echo zend_extension=php_xdebug-%XDEBUG_VERSION%-vc15.dll >> php.ini
   - IF NOT EXIST php-installed.txt type nul >> php-installed.txt
   - cd c:\phptools
-  - composer update --no-interaction --no-ansi --no-progress --no-suggest --optimize-autoloader --prefer-stable %DEPENDENCIES%
+  - composer update --no-interaction --no-progress --no-suggest --optimize-autoloader --prefer-stable %DEPENDENCIES%
 
 test_script:
   - cd c:\phptools
