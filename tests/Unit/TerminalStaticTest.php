@@ -71,7 +71,7 @@ class TerminalStaticTest extends TestCase
     public function setTitle(): void
     {
         $title = 'Title';
-        if ($t = getenv('TERM') && false !== strpos($t, 'xterm')) {
+        if (($t = getenv('TERM')) && (false !== strpos($t, 'xterm'))) {
             $this->assertEquals(
                 Helper::stripEscape("\033]0;{$title}\007"),
                 Helper::stripEscape(TerminalStatic::setTitle($title))
