@@ -71,14 +71,22 @@ class TerminalStaticTest extends TestCase
     public function setTitle(): void
     {
         $title = 'Title';
-        $this->assertEquals(
-            Helper::stripEscape("\033]0;{$title}\007"),
-            Helper::stripEscape(TerminalStatic::setTitle($title))
-        );
-        $this->assertEquals(
-            "\033]0;{$title}\007",
-            TerminalStatic::setTitle($title)
-        );
+        if ($t = getenv('TERM') && false !== strpos($t, 'xterm')) {
+            $this->assertEquals(
+                Helper::stripEscape("\033]0;{$title}\007"),
+                Helper::stripEscape(TerminalStatic::setTitle($title))
+            );
+            $this->assertEquals(
+                "\033]0;{$title}\007",
+                TerminalStatic::setTitle($title)
+            );
+        } else {
+            $this->assertEquals(
+                '',
+                TerminalStatic::setTitle($title)
+            );
+        }
+        
     }
 
 }
