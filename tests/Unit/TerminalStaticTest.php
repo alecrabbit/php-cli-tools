@@ -46,9 +46,7 @@ class TerminalStaticTest extends TestCase
         if ($this->checkTermVarFor256ColorSupport('TERM') ||
             $this->checkTermVarFor256ColorSupport('DOCKER_TERM')) {
             $this->assertTrue(TerminalStatic::supports256Color());
-            $this->assertTrue(TerminalStatic::supports256Color());
         } else {
-            $this->assertFalse(TerminalStatic::supports256Color());
             $this->assertFalse(TerminalStatic::supports256Color());
         }
         $this->assertFalse(callMethod(new TerminalStatic(), 'checkEnvVariable', 'UNKNOWN_VAR', 'value'));

@@ -68,6 +68,7 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
 
         // @codeCoverageIgnoreStart
         if (static::onWindows()) {
+            dump('on windoes');
             return static::checkWindowsColorSupport();
         }
         // @codeCoverageIgnoreEnd
