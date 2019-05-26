@@ -14,3 +14,9 @@
 [![License](https://poser.pugx.org/alecrabbit/php-cli-tools/license)](https://packagist.org/packages/alecrabbit/php-cli-tools)
 <!--[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alecrabbit/php-cli-tools.svg)](http://isitmaintained.com/project/alecrabbit/php-cli-tools "Average time to resolve an issue")-->
 <!--[![Percentage of issues still open](http://isitmaintained.com/badge/open/alecrabbit/php-cli-tools.svg)](http://isitmaintained.com/project/alecrabbit/php-cli-tools "Percentage of issues still open")-->
+
+### Tested Operating Systems
+
+OS                                  |
+----------------------------------- |
+Ubuntu Linux (18.04 LTS)            |
