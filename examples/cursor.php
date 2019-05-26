@@ -13,10 +13,11 @@ sleep(1);
 echo Cursor::savePosition();
 echo ' ';
 
+echo Cursor::back();
 for ($i = 0; $i < 10; $i++) {
     echo Cursor::up();
-    echo Cursor::back();
-    echo '-';
+    echo '--';
+    echo Cursor::back(2);
     usleep(300000);
 }
 usleep(300000);
