@@ -23,5 +23,5 @@ usleep(300000);
 echo Cursor::restorePosition();
 echo '*';
 echo PHP_EOL;
-echo ESC . '[31mDone!' . ESC . '[0;m' . PHP_EOL;
+echo ESC . '[31mDone' . ESC . '[0m!' . PHP_EOL;
 
