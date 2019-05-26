@@ -16,9 +16,9 @@ cache:
 
 install:
   - travis_retry ./.travis/travis-init.sh
-  - php examples/cursor.php
-  - php examples/terminal.php
   - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  vendor/bin/phpunit --coverage-text
+  - php examples/cursor.php
+  - php examples/terminal.php
+  - vendor/bin/phpunit --coverage-text
