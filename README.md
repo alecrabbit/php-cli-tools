@@ -1,4 +1,4 @@
-# PHP Cli Tools
+# 🖥️ PHP Cli Tools
 
 [![PHP Version](https://img.shields.io/packagist/php-v/alecrabbit/php-cli-tools.svg)](https://php.net/)
 [![Build Status](https://travis-ci.com/alecrabbit/php-cli-tools.svg?branch=master)](https://travis-ci.com/alecrabbit/php-cli-tools)
