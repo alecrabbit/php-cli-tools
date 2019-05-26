@@ -57,6 +57,4 @@ install:
 
 test_script:
   - cd c:\phptools
-  - php examples\cursor.php
-  - php examples\terminal.php
   - vendor\bin\phpunit.bat --coverage-text
