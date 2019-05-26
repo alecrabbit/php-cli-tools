@@ -38,6 +38,28 @@ class Cursor
     }
 
     /**
+     * Move cursor up to begin of the line sequence
+     *
+     * @param int $rows
+     * @return string
+     */
+    public static function upLine(int $rows = 1): string
+    {
+        return ESC . "[{$rows}F";
+    }
+
+    /**
+     * Move cursor down to begin of the line sequence
+     *
+     * @param int $rows
+     * @return string
+     */
+    public static function downLine(int $rows = 1): string
+    {
+        return ESC . "[{$rows}E";
+    }
+
+    /**
      * Move cursor down sequence
      *
      * @param int $rows
@@ -80,6 +102,28 @@ class Cursor
     public static function goTo(int $col = 1, int $row = 1): string
     {
         return ESC . "[{$row};{$col}f";
+    }
+
+    /**
+     * Move cursor to position in current line sequence
+     *
+     * @param int $col
+     * @return string
+     */
+    public static function absX(int $col = 1): string
+    {
+        return ESC . "[{$col}G";
+    }
+
+    /**
+     * Move cursor to position in current column sequence
+     *
+     * @param int $row
+     * @return string
+     */
+    public static function absY(int $row = 1): string
+    {
+        return ESC . "[{$row}d";
     }
 
     /**

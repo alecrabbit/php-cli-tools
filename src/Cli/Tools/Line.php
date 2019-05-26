@@ -7,12 +7,50 @@ use const AlecRabbit\ESC;
 class Line
 {
     /**
-     * Clears screen
+     * Erase from the current cursor position (inclusive) to the end of the line
      *
      * @return string
      */
-    public static function eraseToEnd(): string
+    public static function eraseFromCursor(): string
     {
-        return ESC . '[K';
+        return ESC . '[0K';
+    }
+
+    /**
+     * Erase from the beginning of the line up to the current cursor position (inclusive)
+     *
+     * @return string
+     */
+    public static function eraseToCursor(): string
+    {
+        return ESC . '[1K';
+    }
+
+    /**
+     * Erase from the beginning of the line up to the current cursor position (inclusive)
+     *
+     * @return string
+     */
+    public static function erase(): string
+    {
+        return ESC . '[2K';
+    }
+
+    /**
+     * @param int $num
+     * @return string
+     */
+    public static function insert(int $num = 1): string
+    {
+        return  ESC . "[{$num}L";
+    }
+
+    /**
+     * @param int $num
+     * @return string
+     */
+    public static function delete(int $num = 1): string
+    {
+        return  ESC . "[{$num}M";
     }
 }

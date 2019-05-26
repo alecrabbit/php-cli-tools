@@ -15,4 +15,24 @@ class Screen
     {
         return ESC . '[2J';
     }
+
+    /**
+     * Clears screen
+     *
+     * @return string
+     */
+    public static function eraseToCursor(): string
+    {
+        return ESC . '[1J';
+    }
+
+    /**
+     * Clears screen
+     *
+     * @return string
+     */
+    public static function eraseFromCursor(): string
+    {
+        return ESC . '[0J';
+    }
 }
