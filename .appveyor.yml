@@ -59,4 +59,4 @@ test_script:
   - cd c:\phptools
   - php examples\terminal.php
   - php examples\cursor.php
-  - vendor\bin\phpunit.bat
+  - vendor\bin\phpunit.bat --coverage-text
