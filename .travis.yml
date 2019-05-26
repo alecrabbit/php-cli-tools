@@ -19,6 +19,4 @@ install:
   - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - php examples/cursor.php
-  - php examples/terminal.php
   - vendor/bin/phpunit --coverage-text
