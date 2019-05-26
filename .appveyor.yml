@@ -22,7 +22,7 @@ matrix:
   fast_finish: true
 
 cache:
-  - c:\php -> appveyor.yml
+  - c:\php -> .appveyor.yml
   - '%LOCALAPPDATA%\Composer\files'
 
 init:
@@ -57,4 +57,5 @@ install:
 
 test_script:
   - cd c:\phptools
+  - php examples\terminal.php
   - vendor\bin\phpunit.bat
