@@ -101,6 +101,7 @@ class Cursor
     {
         return ESC . '[u';
     }
+
     /**
      * Save cursor position and attributes sequence
      *
