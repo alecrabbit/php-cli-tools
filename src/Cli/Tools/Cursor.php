@@ -2,6 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools;
 
+use const AlecRabbit\CSI;
 use const AlecRabbit\ESC;
 
 class Cursor
@@ -13,7 +14,7 @@ class Cursor
      */
     public static function show(): string
     {
-        return ESC . '[?25h' . ESC . '[?0c';
+        return CSI . '?25h' . CSI . '?0c';
     }
 
     /**
@@ -23,7 +24,7 @@ class Cursor
      */
     public static function hide(): string
     {
-        return ESC . '[?25l';
+        return CSI . '?25l';
     }
 
     /**
@@ -34,7 +35,7 @@ class Cursor
      */
     public static function up(int $rows = 1): string
     {
-        return ESC . "[{$rows}A";
+        return CSI . "{$rows}A";
     }
 
     /**
@@ -45,7 +46,7 @@ class Cursor
      */
     public static function upLine(int $rows = 1): string
     {
-        return ESC . "[{$rows}F";
+        return CSI . "{$rows}F";
     }
 
     /**
@@ -56,7 +57,7 @@ class Cursor
      */
     public static function downLine(int $rows = 1): string
     {
-        return ESC . "[{$rows}E";
+        return CSI . "{$rows}E";
     }
 
     /**
@@ -67,7 +68,7 @@ class Cursor
      */
     public static function down(int $rows = 1): string
     {
-        return ESC . "[{$rows}B";
+        return CSI . "{$rows}B";
     }
 
     /**
@@ -78,7 +79,7 @@ class Cursor
      */
     public static function forward(int $cols = 1): string
     {
-        return ESC . "[{$cols}C";
+        return CSI . "{$cols}C";
     }
 
     /**
@@ -89,7 +90,7 @@ class Cursor
      */
     public static function back(int $cols = 1): string
     {
-        return ESC . "[{$cols}D";
+        return CSI . "{$cols}D";
     }
 
     /**
@@ -101,7 +102,7 @@ class Cursor
      */
     public static function goTo(int $col = 1, int $row = 1): string
     {
-        return ESC . "[{$row};{$col}f";
+        return CSI . "{$row};{$col}f";
     }
 
     /**
@@ -112,7 +113,7 @@ class Cursor
      */
     public static function absX(int $col = 1): string
     {
-        return ESC . "[{$col}G";
+        return CSI . "{$col}G";
     }
 
     /**
@@ -123,7 +124,7 @@ class Cursor
      */
     public static function absY(int $row = 1): string
     {
-        return ESC . "[{$row}d";
+        return CSI . "{$row}d";
     }
 
     /**
@@ -133,7 +134,7 @@ class Cursor
      */
     public static function savePosition(): string
     {
-        return ESC . '[s';
+        return CSI . 's';
     }
 
     /**
@@ -143,7 +144,7 @@ class Cursor
      */
     public static function restorePosition(): string
     {
-        return ESC . '[u';
+        return CSI . 'u';
     }
 
     /**

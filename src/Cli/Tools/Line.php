@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools;
 
-use const AlecRabbit\ESC;
+use const AlecRabbit\CSI;
 
 class Line
 {
@@ -13,7 +13,7 @@ class Line
      */
     public static function eraseFromCursor(): string
     {
-        return ESC . '[0K';
+        return CSI . '0K';
     }
 
     /**
@@ -23,7 +23,7 @@ class Line
      */
     public static function eraseToCursor(): string
     {
-        return ESC . '[1K';
+        return CSI . '1K';
     }
 
     /**
@@ -33,7 +33,7 @@ class Line
      */
     public static function erase(): string
     {
-        return ESC . '[2K';
+        return CSI . '2K';
     }
 
     /**
@@ -42,7 +42,7 @@ class Line
      */
     public static function insert(int $num = 1): string
     {
-        return  ESC . "[{$num}L";
+        return CSI . "{$num}L";
     }
 
     /**
@@ -51,6 +51,6 @@ class Line
      */
     public static function delete(int $num = 1): string
     {
-        return  ESC . "[{$num}M";
+        return CSI . "{$num}M";
     }
 }

@@ -4,6 +4,7 @@ namespace AlecRabbit;
 
 // @codeCoverageIgnoreStart
 define(__NAMESPACE__ . '\\'. 'ESC', "\033");
+define(__NAMESPACE__ . '\\'. 'CSI', ESC.'[');
 
 define(__NAMESPACE__ . '\\'. 'COLOR256_TERMINAL', 255);
 define(__NAMESPACE__ . '\\'. 'COLOR_TERMINAL', 16);

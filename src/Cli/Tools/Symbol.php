@@ -2,22 +2,22 @@
 
 namespace AlecRabbit\Cli\Tools;
 
-use const AlecRabbit\ESC;
+use const AlecRabbit\CSI;
 
 class Symbol
 {
-    public static function insert(int $num = 1): string
+    public static function insert(int $count = 1): string
     {
-        return  ESC . "[{$num}@";
+        return CSI . "{$count}@";
     }
 
-    public static function delete(int $num = 1): string
+    public static function delete(int $count = 1): string
     {
-        return  ESC . "[{$num}P";
+        return CSI . "{$count}P";
     }
 
-    public static function replaceWithSpace(int $num = 1): string
+    public static function replaceWithSpace(int $count = 1): string
     {
-        return  ESC . "[{$num}X";
+        return CSI . "{$count}X";
     }
 }

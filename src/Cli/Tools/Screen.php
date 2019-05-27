@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools;
 
-use const AlecRabbit\ESC;
+use const AlecRabbit\CSI;
 
 class Screen
 {
@@ -13,7 +13,7 @@ class Screen
      */
     public static function clear(): string
     {
-        return ESC . '[2J';
+        return CSI . '2J';
     }
 
     /**
@@ -23,7 +23,7 @@ class Screen
      */
     public static function eraseToCursor(): string
     {
-        return ESC . '[1J';
+        return CSI . '1J';
     }
 
     /**
@@ -33,6 +33,6 @@ class Screen
      */
     public static function eraseFromCursor(): string
     {
-        return ESC . '[0J';
+        return CSI . '0J';
     }
 }
