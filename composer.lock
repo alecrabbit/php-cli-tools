@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d687930e785621ed4a9614a89c773b3",
+    "content-hash": "8b2fb17edfb6f0a90b8562f2d4bb5a39",
     "packages": [],
     "packages-dev": [
         {
             "name": "alecrabbit/php-helpers",
-            "version": "0.5.10",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alecrabbit/php-helpers.git",
-                "reference": "41a056a0b1ca42389a21cd5ec696c0dd107c6c37"
+                "reference": "2c31fa4203cd983e7f0e52e3ba6e2806024d54ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alecrabbit/php-helpers/zipball/41a056a0b1ca42389a21cd5ec696c0dd107c6c37",
-                "reference": "41a056a0b1ca42389a21cd5ec696c0dd107c6c37",
+                "url": "https://api.github.com/repos/alecrabbit/php-helpers/zipball/2c31fa4203cd983e7f0e52e3ba6e2806024d54ff",
+                "reference": "2c31fa4203cd983e7f0e52e3ba6e2806024d54ff",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
                 "wrap",
                 "zeros"
             ],
-            "time": "2019-05-23T19:31:39+00:00"
+            "time": "2019-05-24T09:28:50+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2395,7 +2395,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": ">=7.2"
     },
     "platform-dev": []
 }
