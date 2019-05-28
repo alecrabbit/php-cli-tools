@@ -3,7 +3,6 @@
 namespace AlecRabbit\Tests\ConsoleColour;
 
 use AlecRabbit\Cli\Tools\Terminal;
-use function AlecRabbit\Helpers\callMethod;
 use PHPUnit\Framework\TestCase;
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 use const AlecRabbit\COLOR256_TERMINAL;
@@ -26,6 +25,20 @@ class TerminalTest extends TestCase
         $this->assertSame($color, $terminal->color());
     }
 
+    /**
+     * @test
+     * @dataProvider nullableDataProvider
+     * @param array $expected
+     */
+    public function nullable(array $expected): void
+    {
+        [$width, $height, $color] = $expected;
+        $terminal = new Terminal($width, $height, $color);
+        $this->assertIsInt($terminal->width());
+        $this->assertIsInt($terminal->height());
+        $this->assertIsInt($terminal->color());
+    }
+
     /** @test */
     public function color(): void
     {
@@ -45,6 +58,17 @@ class TerminalTest extends TestCase
                 [[81, 52, COLOR256_TERMINAL]],
             ];
     }
+
+    public function nullableDataProvider(): array
+    {
+        return [
+            [[80, null, null],],
+            [[null, 60, null],],
+            [[null, null, NO_COLOR_TERMINAL],],
+            [[null, null, null],],
+        ];
+    }
+
 
     /**
      * @test

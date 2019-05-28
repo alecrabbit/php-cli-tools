@@ -21,7 +21,7 @@ class Terminal implements TerminalInterface
     /** @var int */
     protected $color;
 
-    public function __construct(int $width = null, int $height = null, int $colorSupport = null)
+    public function __construct(?int $width = null, ?int $height = null, int $colorSupport = null)
     {
         $this->width = $this->refineWidth($width);
         $this->height = $this->refineHeight($height);
