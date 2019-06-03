@@ -38,4 +38,14 @@ echo $line;
 echo Cursor::goTo(31, 12) . 'X';
 sleep(1);
 echo Line::erase();
+echo Cursor::goTo(11, 14);
 
+for ($i = 0; $i < 10; $i++) {
+    echo str_repeat((string)$i, 20) . PHP_EOL;
+}
+echo Cursor::goTo(31, 12) . 'X';
+sleep(1);
+echo Screen::eraseFromCursor();
+sleep(1);
+
+echo Screen::eraseToCursor();
