@@ -14,7 +14,7 @@ define(__NAMESPACE__ . '\\' . 'NO_COLOR_TERMINAL', 0);
 define(
     __NAMESPACE__ . '\\' . 'ALLOWED_COLOR_TERMINAL',
     [
-//        TRUECOLOR_TERMINAL,
+    //        TRUECOLOR_TERMINAL,
         COLOR256_TERMINAL,
         COLOR_TERMINAL,
         NO_COLOR_TERMINAL,
@@ -24,7 +24,7 @@ define(
 define(
     __NAMESPACE__ . '\\' . 'TERMINAL_COLOR_MODES',
     [
-//        TRUECOLOR_TERMINAL => 'TRUECOLOR',
+    //        TRUECOLOR_TERMINAL => 'TRUECOLOR',
         COLOR256_TERMINAL => '256 COLOR',
         COLOR_TERMINAL => '16 COLOR',
         NO_COLOR_TERMINAL => 'NO COLOR',
