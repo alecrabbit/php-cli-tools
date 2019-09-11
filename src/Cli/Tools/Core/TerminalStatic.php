@@ -68,7 +68,7 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     /** {@inheritdoc} */
     public static function colorSupport($stream = null): int
     {
-        if (static::supportsColor(false, $stream)) {
+        if (static::supportsColor(true, $stream)) {
             return
                 static::supports256Color() ?
                     COLOR256_TERMINAL :
