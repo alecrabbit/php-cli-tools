@@ -23,16 +23,22 @@ interface TerminalStaticInterface
 
     /**
      * @param bool $recheck
+     * @param null|bool|resource $stream
+     * @return bool
+     */
+    public static function supportsColor(bool $recheck = false, $stream = null): bool;
+
+    /**
+     * @param bool $recheck
      * @return bool
      */
     public static function supports256Color(bool $recheck = false): bool;
 
     /**
      * @param bool $recheck
-     * @param null|bool|resource $stream
      * @return bool
      */
-    public static function supportsColor(bool $recheck = false, $stream = null): bool;
+    public static function supportsTrueColor(bool $recheck = false): bool;
 
     /**
      * Returns set title ESC sequence

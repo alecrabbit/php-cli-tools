@@ -7,6 +7,7 @@ use AlecRabbit\Cli\Tools\Stream;
 use const AlecRabbit\COLOR256_TERMINAL;
 use const AlecRabbit\COLOR_TERMINAL;
 use const AlecRabbit\NO_COLOR_TERMINAL;
+use const AlecRabbit\TRUECOLOR_TERMINAL;
 
 /**
  * Class Terminal
@@ -14,26 +15,6 @@ use const AlecRabbit\NO_COLOR_TERMINAL;
  */
 class TerminalStatic extends AbstractColorSupportingTerminal implements TerminalStaticInterface
 {
-
-    /** {@inheritdoc} */
-    public static function supports256Color(bool $recheck = false): bool
-    {
-        if (null !== static::$supports256Color && true !== $recheck) {
-            return static::$supports256Color;
-        }
-        return
-            static::$supports256Color = static::has256ColorSupport();
-    }
-
-    /** {@inheritdoc} */
-    public static function supportsColor(bool $recheck = false, $stream = null): bool
-    {
-        if (null !== static::$supportsColor && false === $recheck) {
-            return static::$supportsColor;
-        }
-        return
-            static::$supportsColor = Stream::hasColorSupport($stream);
-    }
 
     /** {@inheritdoc} */
     public static function setTitle(string $title): string
@@ -69,14 +50,59 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     /** {@inheritdoc} */
     public static function colorSupport($stream = null): int
     {
+        $colorSupport = NO_COLOR_TERMINAL;
         if (static::supportsColor(true, $stream)) {
             return
-                static::supports256Color() ?
-                    COLOR256_TERMINAL :
-                    COLOR_TERMINAL;
+                static::supportsTrueColor() ?
+                    TRUECOLOR_TERMINAL:
+                    (
+                    static::supports256Color() ?
+                        COLOR256_TERMINAL :
+                        COLOR_TERMINAL
+                    );
+//            return
+//                static::supports256Color() ?
+//                    COLOR256_TERMINAL:
+//                    (
+//                    static::supportsTrueColor() ?
+//                        TRUECOLOR_TERMINAL :
+//                        COLOR_TERMINAL
+//                    );
         }
         // @codeCoverageIgnoreStart
-        return NO_COLOR_TERMINAL;
+        return $colorSupport;
         // @codeCoverageIgnoreEnd
     }
+
+    /** {@inheritdoc} */
+    public static function supportsColor(bool $recheck = false, $stream = null): bool
+    {
+        if (null !== static::$supportsColor && false === $recheck) {
+            return static::$supportsColor;
+        }
+        return
+            static::$supportsColor = Stream::hasColorSupport($stream);
+    }
+
+    /** {@inheritdoc} */
+    public static function supports256Color(bool $recheck = false): bool
+    {
+        if (null !== static::$supports256Color && true !== $recheck) {
+            return static::$supports256Color;
+        }
+        return
+            static::$supports256Color = static::has256ColorSupport();
+    }
+
+    /** {@inheritdoc} */
+    public static function supportsTrueColor(bool $recheck = false): bool
+    {
+        if (null !== static::$supportsTrueColor && true !== $recheck) {
+            return static::$supportsTrueColor;
+        }
+        return
+            static::$supportsTrueColor = static::hasTrueColorSupport();
+
+    }
+
 }

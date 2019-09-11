@@ -2,9 +2,11 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
+use const AlecRabbit\ENV_COLORTERM;
 use const AlecRabbit\ENV_DOCKER_TERM;
 use const AlecRabbit\ENV_TERM;
 use const AlecRabbit\NEEDLE_256_COLOR;
+use const AlecRabbit\NEEDLE_TRUECOLOR;
 use const AlecRabbit\XTERM;
 
 abstract class AbstractColorSupportingTerminal extends AbstractTerminal
@@ -12,6 +14,9 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
 
     /** @var null|bool */
     protected static $supports256Color;
+
+    /** @var null|bool */
+    protected static $supportsTrueColor;
 
     /** @var null|bool */
     protected static $supportsColor;
@@ -64,6 +69,14 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
             static::supportsColor() ?
                 static::checkEnvVariable(ENV_TERM, NEEDLE_256_COLOR) ||
                 static::checkEnvVariable(ENV_DOCKER_TERM, NEEDLE_256_COLOR) :
+                false;
+    }
+
+    protected static function hasTrueColorSupport(): bool
+    {
+        return
+            static::supportsColor() ?
+                static::checkEnvVariable(ENV_COLORTERM, NEEDLE_TRUECOLOR) :
                 false;
     }
 
