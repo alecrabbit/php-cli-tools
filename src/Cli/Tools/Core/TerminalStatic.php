@@ -3,6 +3,7 @@
 namespace AlecRabbit\Cli\Tools\Core;
 
 use AlecRabbit\Cli\Tools\Core\Contracts\TerminalStaticInterface;
+use AlecRabbit\Cli\Tools\Stream;
 use const AlecRabbit\COLOR256_TERMINAL;
 use const AlecRabbit\COLOR_TERMINAL;
 use const AlecRabbit\NO_COLOR_TERMINAL;
@@ -31,7 +32,7 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
             return static::$supportsColor;
         }
         return
-            static::$supportsColor = static::hasColorSupport($stream);
+            static::$supportsColor = Stream::hasColorSupport($stream);
     }
 
     /** {@inheritdoc} */
