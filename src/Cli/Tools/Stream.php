@@ -1,0 +1,7 @@
+<?php declare(strict_types=1);
+
+namespace AlecRabbit\Cli\Tools;
+
+class Stream
+{
+}
