@@ -9,4 +9,4 @@ $t = new Terminal();
 
 echo 'Terminal width: ' . $t->width() . PHP_EOL;
 echo 'Terminal height: ' . $t->height() . PHP_EOL;
-echo 'Terminal color mode: ' . TERMINAL_COLOR_MODES[$t->color()] . PHP_EOL;
+echo 'Max color mode: ' . TERMINAL_COLOR_MODES[$t->color()] . PHP_EOL;
