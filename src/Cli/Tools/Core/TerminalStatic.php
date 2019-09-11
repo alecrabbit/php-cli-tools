@@ -102,7 +102,5 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
         }
         return
             static::$supportsTrueColor = static::hasTrueColorSupport();
-
     }
-
 }
