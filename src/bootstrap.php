@@ -7,6 +7,7 @@ define(__NAMESPACE__ . '\\' . 'ESC', "\033");
 define(__NAMESPACE__ . '\\' . 'CSI', ESC . '[');
 
 define(__NAMESPACE__ . '\\' . 'ENV_ANSICON', 'ANSICON');
+define(__NAMESPACE__ . '\\' . 'ENV_COLORTERM', 'COLORTERM');
 define(__NAMESPACE__ . '\\' . 'ENV_DOCKER_TERM', 'DOCKER_TERM');
 define(__NAMESPACE__ . '\\' . 'ENV_TERM', 'TERM');
 define(__NAMESPACE__ . '\\' . 'ENV_TERM_PROGRAM', 'TERM_PROGRAM');
