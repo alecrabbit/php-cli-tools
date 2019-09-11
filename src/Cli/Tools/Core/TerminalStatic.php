@@ -19,12 +19,8 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     /** {@inheritdoc} */
     public static function setTitle(string $title): string
     {
-        if (static::isXterm()) {
-            return "\033]0;{$title}\007";
-        }
-        // @codeCoverageIgnoreStart
-        return (string)null;
-        // @codeCoverageIgnoreEnd
+        return
+            static::isXterm()? "\033]0;{$title}\007" : '';
     }
 
     /** {@inheritdoc} */
@@ -51,18 +47,17 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     public static function colorSupport($stream = null): int
     {
         $colorSupport = NO_COLOR_TERMINAL;
+
         if (static::supportsColor(true, $stream)) {
             $colorSupport = COLOR_TERMINAL;
-            if(static::supports256Color()) {
+            if (static::supports256Color()) {
                 $colorSupport = COLOR256_TERMINAL;
             }
-            if(static::supportsTrueColor()) {
+            if (static::supportsTrueColor()) {
                 $colorSupport = TRUECOLOR_TERMINAL;
             }
         }
-        // @codeCoverageIgnoreStart
         return $colorSupport;
-        // @codeCoverageIgnoreEnd
     }
 
     /** {@inheritdoc} */
