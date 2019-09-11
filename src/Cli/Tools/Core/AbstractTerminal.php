@@ -2,6 +2,8 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
+use function AlecRabbit\onWindows;
+
 /**
  * Class Terminal
  *
@@ -32,7 +34,7 @@ abstract class AbstractTerminal
      */
     protected static function initDimensions(): void
     {
-        if (static::onWindows()) {
+        if (onWindows()) {
             self::initDimensionsWindows();
         } elseif ($sttyString = static::getSttyColumns()) {
             self::initDimensionsUnix($sttyString);
@@ -180,13 +182,5 @@ abstract class AbstractTerminal
         }
         return static::$height ?: static::DEFAULT_HEIGHT;
         // @codeCoverageIgnoreEnd
-    }
-
-    /**
-     * @return bool
-     */
-    protected static function onWindows(): bool
-    {
-        return '\\' === \DIRECTORY_SEPARATOR;
     }
 }

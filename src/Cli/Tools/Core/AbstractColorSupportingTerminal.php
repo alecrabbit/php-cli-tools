@@ -2,14 +2,13 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
+use const AlecRabbit\ENV_DOCKER_TERM;
+use const AlecRabbit\ENV_TERM;
+use const AlecRabbit\NEEDLE_256_COLOR;
+use const AlecRabbit\XTERM;
+
 abstract class AbstractColorSupportingTerminal extends AbstractTerminal
 {
-    protected const ENV_TERM = 'TERM';
-    protected const ENV_CON_EMU_ANSI = 'ConEmuANSI';
-    protected const ENV_DOCKER_TERM = 'DOCKER_TERM';
-    protected const COLOR_NEEDLE = '256color';
-    protected const ENV_TERM_PROGRAM = 'TERM_PROGRAM';
-    protected const XTERM = 'xterm';
 
     /** @var null|bool */
     protected static $supports256Color;
@@ -38,8 +37,8 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     protected static function isXtermTerminal(): bool
     {
         return
-            static::checkEnvVariable(static::ENV_TERM, self::XTERM) ||
-            static::checkEnvVariable(static::ENV_DOCKER_TERM, self::XTERM);
+            static::checkEnvVariable(ENV_TERM, XTERM) ||
+            static::checkEnvVariable(ENV_DOCKER_TERM, XTERM);
     }
 
     /**
@@ -57,108 +56,14 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     }
 
     /**
-     * Returns true if the stream supports colorization.
-     *
-     * Colorization is disabled if not supported by the stream:
-     *
-     * This is tricky on Windows, because Cygwin, Msys2 etc emulate pseudo
-     * terminals via named pipes, so we can only check the environment.
-     *
-     * Reference: Composer\XdebugHandler\Process::supportsColor
-     * https://github.com/composer/xdebug-handler
-     *
-     * Reference: Symfony\Component\Console\Output\StreamOutput::hasColorSupport()
-     * https://github.com/symfony/console
-     *
-     * @param null|bool|resource $stream
-     * @return bool true if the stream supports colorization, false otherwise
-     */
-    protected static function hasColorSupport($stream = null): bool
-    {
-        $stream = self::refineStream($stream);
-        if ('Hyper' === getenv(static::ENV_TERM_PROGRAM)) {
-            // @codeCoverageIgnoreStart
-            return true;
-            // @codeCoverageIgnoreEnd
-        }
-
-        // @codeCoverageIgnoreStart
-        if (static::onWindows()) {
-            return static::checkWindowsColorSupport($stream);
-        }
-        // @codeCoverageIgnoreEnd
-
-        if (\function_exists('stream_isatty')) {
-            return @stream_isatty($stream);
-        }
-
-        // @codeCoverageIgnoreStart
-        if (\function_exists('posix_isatty')) {
-            /** @noinspection PhpComposerExtensionStubsInspection */
-            return @posix_isatty($stream);
-        }
-
-        return static::checkStream();
-        // @codeCoverageIgnoreEnd
-    }
-
-    /**
-     * @param null|bool|resource $stream
-     * @return resource
-     */
-    protected static function refineStream($stream = null)
-    {
-        $stream = $stream ?? STDOUT;
-        self::assertStream($stream);
-        return $stream;
-    }
-
-    /**
-     * @param mixed $stream
-     */
-    protected static function assertStream($stream): void
-    {
-        if (!\is_resource($stream)) {
-            throw new \RuntimeException(
-                'Expecting parameter 1 to be resource, ' . \gettype($stream) . ' given'
-            );
-        }
-    }
-
-    /**
-     * @param resource $stream
-     * @return bool
-     * @codeCoverageIgnore
-     */
-    protected static function checkWindowsColorSupport($stream): bool
-    {
-        return (\function_exists('sapi_windows_vt100_support')
-                && @sapi_windows_vt100_support($stream))
-            || false !== getenv(static::ENV_ANSICON)
-            || 'ON' === getenv(static::ENV_CON_EMU_ANSI)
-            || self::XTERM === getenv(static::ENV_TERM);
-    }
-
-    /**
-     * @return bool
-     * @codeCoverageIgnore
-     */
-    protected static function checkStream(): bool
-    {
-        $stat = @fstat(STDOUT);
-        // Check if formatted mode is S_IFCHR
-        return $stat ? 0020000 === ($stat['mode'] & 0170000) : false;
-    }
-
-    /**
      * @return bool
      */
     protected static function has256ColorSupport(): bool
     {
         return
             static::supportsColor() ?
-                static::checkEnvVariable(static::ENV_TERM, static::COLOR_NEEDLE) ||
-                static::checkEnvVariable(static::ENV_DOCKER_TERM, static::COLOR_NEEDLE) :
+                static::checkEnvVariable(ENV_TERM, NEEDLE_256_COLOR) ||
+                static::checkEnvVariable(ENV_DOCKER_TERM, NEEDLE_256_COLOR) :
                 false;
     }
 
