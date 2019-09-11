@@ -3,6 +3,7 @@
 namespace AlecRabbit\Cli\Tools\Core;
 
 use function AlecRabbit\onWindows;
+use const AlecRabbit\ENV_ANSICON;
 
 /**
  * Class Terminal
@@ -21,7 +22,6 @@ abstract class AbstractTerminal
 
     protected const ENV_COLUMNS = 'COLUMNS';
     protected const ENV_LINES = 'LINES';
-    protected const ENV_ANSICON = 'ANSICON';
 
     /** @var null|int */
     protected static $width;
@@ -46,7 +46,7 @@ abstract class AbstractTerminal
      */
     protected static function initDimensionsWindows(): void
     {
-        if ((false !== $term = getenv(static::ENV_ANSICON)) &&
+        if ((false !== $term = getenv(ENV_ANSICON)) &&
             preg_match('/^(\d+)x(\d+)(?: \((\d+)x(\d+)\))?$/', trim($term), $matches)) {
             // extract [w, H] from "wxh (WxH)"
             // or [w, h] from "wxh"
@@ -123,7 +123,6 @@ abstract class AbstractTerminal
             fclose($pipes[1]);
             fclose($pipes[2]);
             proc_close($process);
-
             return $info ?: null;
         }
         return null;

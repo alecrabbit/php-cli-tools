@@ -54,3 +54,6 @@ echo Screen::eraseFromCursor();
 sleep(1);
 
 echo Screen::eraseToCursor();
+sleep(1);
+echo Screen::clear();
+echo Cursor::goTo();
