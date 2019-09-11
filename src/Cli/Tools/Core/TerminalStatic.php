@@ -52,22 +52,13 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     {
         $colorSupport = NO_COLOR_TERMINAL;
         if (static::supportsColor(true, $stream)) {
-            return
-                static::supportsTrueColor() ?
-                    TRUECOLOR_TERMINAL:
-                    (
-                    static::supports256Color() ?
-                        COLOR256_TERMINAL :
-                        COLOR_TERMINAL
-                    );
-//            return
-//                static::supports256Color() ?
-//                    COLOR256_TERMINAL:
-//                    (
-//                    static::supportsTrueColor() ?
-//                        TRUECOLOR_TERMINAL :
-//                        COLOR_TERMINAL
-//                    );
+            $colorSupport = COLOR_TERMINAL;
+            if(static::supports256Color()) {
+                $colorSupport = COLOR256_TERMINAL;
+            }
+            if(static::supportsTrueColor()) {
+                $colorSupport = TRUECOLOR_TERMINAL;
+            }
         }
         // @codeCoverageIgnoreStart
         return $colorSupport;
