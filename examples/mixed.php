@@ -24,26 +24,31 @@ sleep(1);
 echo Line::insert(2);// insert 2 lines
 sleep(1);
 echo Line::delete(2); // delete 2 lines
-echo Cursor::goTo(20, 11) . 'X';
-echo Cursor::goTo(1, 12) . 'X';
+echo Cursor::goTo(20, 11) . 'A';
+sleep(1);
+echo Cursor::goTo(1, 12) . 'B';
+sleep(1);
 echo $line;
-echo Cursor::goTo(31, 12) . 'X';
+sleep(1);
+echo Cursor::goTo(31, 12) . 'C';
 sleep(1);
 echo Line::eraseFromCursor();
 sleep(1);
 echo Line::eraseToCursor();
 sleep(1);
-echo Cursor::goTo(1, 12) . 'X';
+echo Cursor::goTo(1, 12) . 'D';
+sleep(1);
 echo $line;
-echo Cursor::goTo(31, 12) . 'X';
+echo Cursor::goTo(31, 12) . 'E';
 sleep(1);
 echo Line::erase();
-echo Cursor::goTo(11, 14);
+echo Cursor::goTo(1, 14);
 
 for ($i = 0; $i < 10; $i++) {
     echo str_repeat((string)$i, 20) . PHP_EOL;
 }
-echo Cursor::goTo(31, 12) . 'X';
+sleep(1);
+echo Cursor::goTo(31, 12) . 'F';
 sleep(1);
 echo Screen::eraseFromCursor();
 sleep(1);
