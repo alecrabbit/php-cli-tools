@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- `truecolor` support detection
 - new function `onWindows()`
 - new constants
 - `Stream::hasColorSupport(resource $stream)`
