@@ -43,6 +43,20 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     }
 
     /**
+     * @param string $varName
+     * @param string $checkFor
+     * @return bool
+     */
+    protected static function checkEnvVariable(string $varName, string $checkFor): bool
+    {
+        if ($t = getenv($varName)) {
+            return
+                false !== strpos($t, $checkFor);
+        }
+        return false;
+    }
+
+    /**
      * Returns true if the stream supports colorization.
      *
      * Colorization is disabled if not supported by the stream:
@@ -56,10 +70,12 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
      * Reference: Symfony\Component\Console\Output\StreamOutput::hasColorSupport()
      * https://github.com/symfony/console
      *
+     * @param null|bool|resource $stream
      * @return bool true if the stream supports colorization, false otherwise
      */
-    protected static function hasColorSupport(): bool
+    protected static function hasColorSupport($stream = null): bool
     {
+        $stream = self::refineStream($stream);
         if ('Hyper' === getenv(static::ENV_TERM_PROGRAM)) {
             // @codeCoverageIgnoreStart
             return true;
@@ -68,18 +84,18 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
 
         // @codeCoverageIgnoreStart
         if (static::onWindows()) {
-            return static::checkWindowsColorSupport();
+            return static::checkWindowsColorSupport($stream);
         }
         // @codeCoverageIgnoreEnd
 
         if (\function_exists('stream_isatty')) {
-            return @stream_isatty(STDOUT);
+            return @stream_isatty($stream);
         }
 
         // @codeCoverageIgnoreStart
         if (\function_exists('posix_isatty')) {
             /** @noinspection PhpComposerExtensionStubsInspection */
-            return @posix_isatty(STDOUT);
+            return @posix_isatty($stream);
         }
 
         return static::checkStream();
@@ -87,13 +103,37 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
     }
 
     /**
+     * @param null|bool|resource $stream
+     * @return resource
+     */
+    protected static function refineStream($stream = null)
+    {
+        $stream = $stream ?? STDOUT;
+        self::assertStream($stream);
+        return $stream;
+    }
+
+    /**
+     * @param mixed $stream
+     */
+    protected static function assertStream($stream): void
+    {
+        if (!\is_resource($stream)) {
+            throw new \RuntimeException(
+                'Expecting parameter 1 to be resource, ' . \gettype($stream) . ' given'
+            );
+        }
+    }
+
+    /**
+     * @param resource $stream
      * @return bool
      * @codeCoverageIgnore
      */
-    protected static function checkWindowsColorSupport(): bool
+    protected static function checkWindowsColorSupport($stream): bool
     {
         return (\function_exists('sapi_windows_vt100_support')
-                && @sapi_windows_vt100_support(STDOUT))
+                && @sapi_windows_vt100_support($stream))
             || false !== getenv(static::ENV_ANSICON)
             || 'ON' === getenv(static::ENV_CON_EMU_ANSI)
             || self::XTERM === getenv(static::ENV_TERM);
@@ -122,19 +162,10 @@ abstract class AbstractColorSupportingTerminal extends AbstractTerminal
                 false;
     }
 
-    abstract public static function supportsColor(bool $recheck = false): bool;
-
     /**
-     * @param string $varName
-     * @param string $checkFor
+     * @param bool $recheck
+     * @param null|bool|resource $stream
      * @return bool
      */
-    protected static function checkEnvVariable(string $varName, string $checkFor): bool
-    {
-        if ($t = getenv($varName)) {
-            return
-                false !== strpos($t, $checkFor);
-        }
-        return false;
-    }
+    abstract public static function supportsColor(bool $recheck = false, $stream = null): bool;
 }

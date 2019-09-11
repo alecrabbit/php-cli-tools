@@ -25,13 +25,13 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     }
 
     /** {@inheritdoc} */
-    public static function supportsColor(bool $recheck = false): bool
+    public static function supportsColor(bool $recheck = false, $stream = null): bool
     {
         if (null !== static::$supportsColor && false === $recheck) {
             return static::$supportsColor;
         }
         return
-            static::$supportsColor = static::hasColorSupport();
+            static::$supportsColor = static::hasColorSupport($stream);
     }
 
     /** {@inheritdoc} */
@@ -66,9 +66,9 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     }
 
     /** {@inheritdoc} */
-    public static function colorSupport(): int
+    public static function colorSupport($stream = null): int
     {
-        if (static::supportsColor()) {
+        if (static::supportsColor(false, $stream)) {
             return
                 static::supports256Color() ?
                     COLOR256_TERMINAL :

@@ -29,9 +29,10 @@ interface TerminalStaticInterface
 
     /**
      * @param bool $recheck
+     * @param null|bool|resource $stream
      * @return bool
      */
-    public static function supportsColor(bool $recheck = false): bool;
+    public static function supportsColor(bool $recheck = false, $stream = null): bool;
 
     /**
      * Returns set title ESC sequence
@@ -44,7 +45,8 @@ interface TerminalStaticInterface
     /**
      * Returns color support level
      *
+     * @param mixed $stream
      * @return int
      */
-    public static function colorSupport(): int;
+    public static function colorSupport($stream = null): int;
 }
