@@ -53,5 +53,4 @@ class EnvCheck
         return
             static::checkEnvVariable(ENV_COLORTERM, NEEDLE_TRUECOLOR);
     }
-
 }
