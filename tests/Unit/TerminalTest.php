@@ -8,6 +8,7 @@ use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 use const AlecRabbit\COLOR256_TERMINAL;
 use const AlecRabbit\COLOR_TERMINAL;
 use const AlecRabbit\NO_COLOR_TERMINAL;
+use const AlecRabbit\TRUECOLOR_TERMINAL;
 
 class TerminalTest extends TestCase
 {
@@ -55,6 +56,7 @@ class TerminalTest extends TestCase
             [
                 [[100, 60, COLOR_TERMINAL]],
                 [[80, 50, NO_COLOR_TERMINAL]],
+                [[80, 50, TRUECOLOR_TERMINAL]],
                 [[81, 52, COLOR256_TERMINAL]],
             ];
     }
