@@ -7,7 +7,7 @@ namespace AlecRabbit\Cli\Tools\Core\Contracts;
  *
  * @author AlecRabbit
  */
-interface TerminalStaticInterface
+interface StaticTerminalInterface
 {
     /**
      * @param bool $recheck

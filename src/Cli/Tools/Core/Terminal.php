@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
-use AlecRabbit\Cli\Tools\Core\Contracts\TerminalStaticInterface;
+use AlecRabbit\Cli\Tools\Core\Contracts\StaticTerminalInterface;
 use AlecRabbit\Cli\Tools\EnvCheck;
 use AlecRabbit\Cli\Tools\Stream;
 use const AlecRabbit\COLOR256_TERMINAL;
@@ -14,7 +14,7 @@ use const AlecRabbit\TRUECOLOR_TERMINAL;
  * Class Terminal
  * @author AlecRabbit
  */
-class Terminal extends AbstractXTermTerminal implements TerminalStaticInterface
+class Terminal extends AbstractXTermTerminal implements StaticTerminalInterface
 {
 
     /** {@inheritdoc} */
