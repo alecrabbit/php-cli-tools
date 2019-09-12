@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AlecRabbit\\Cli\\Tools\\": "src\\Cli\\Tools"
+      "AlecRabbit\\Cli\\": "src\\Cli"
     },
     "files": [
       "src/bootstrap.php"

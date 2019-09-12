@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use AlecRabbit\Cli\Tools\Terminal;
+use AlecRabbit\Cli\Terminal;
 use const AlecRabbit\TERMINAL_COLOR_MODES;
 
 require_once __DIR__ . '/../vendor/autoload.php';

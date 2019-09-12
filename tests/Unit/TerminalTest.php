@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Tests\ConsoleColour;
 
-use AlecRabbit\Cli\Tools\Terminal;
+use AlecRabbit\Cli\Terminal;
 use PHPUnit\Framework\TestCase;
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 use const AlecRabbit\COLOR256_TERMINAL;

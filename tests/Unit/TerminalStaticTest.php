@@ -3,9 +3,12 @@
 namespace AlecRabbit\Tests\ConsoleColour;
 
 use AlecRabbit\Cli\Tools\Core\TerminalStatic;
+use AlecRabbit\Cli\Tools\EnvCheck;
 use AlecRabbit\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use function AlecRabbit\Helpers\callMethod;
+use const AlecRabbit\COLOR256_TERMINAL;
+use const AlecRabbit\NO_COLOR_TERMINAL;
 
 class TerminalStaticTest extends TestCase
 {
@@ -42,14 +45,17 @@ class TerminalStaticTest extends TestCase
     /** @test */
     public function colorSupport(): void
     {
-        $this->assertIsBool(TerminalStatic::supportsColor());
+        $colorLevel = TerminalStatic::colorSupport(STDOUT);
+        $this->assertIsInt($colorLevel);
         if ($this->checkTermVarFor256ColorSupport('TERM') ||
             $this->checkTermVarFor256ColorSupport('DOCKER_TERM')) {
-            $this->assertTrue(TerminalStatic::supports256Color());
+            $this->assertTrue($colorLevel >= COLOR256_TERMINAL);
         } else {
-            $this->assertFalse(TerminalStatic::supports256Color());
+            $this->assertFalse($colorLevel >= COLOR256_TERMINAL);
         }
-        $this->assertFalse(callMethod(new TerminalStatic(), 'checkEnvVariable', 'UNKNOWN_VAR', 'value'));
+        $this->assertFalse(
+            callMethod(EnvCheck::class, 'checkEnvVariable', 'UNKNOWN_VAR', 'value')
+        );
     }
 
     /**

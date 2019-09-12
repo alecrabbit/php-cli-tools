@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace AlecRabbit\Cli\Tools;
+namespace AlecRabbit\Cli;
 
 use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
 use AlecRabbit\Cli\Tools\Core\TerminalStatic;
-use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 use function AlecRabbit\Helpers\inRange;
+use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 
 class Terminal implements TerminalInterface
 {
