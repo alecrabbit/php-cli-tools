@@ -32,6 +32,7 @@ class Stream
     public static function hasColorSupport($stream = null): bool
     {
         $stream = self::refineStream($stream);
+
         if ('Hyper' === getenv(ENV_TERM_PROGRAM)) {
             // @codeCoverageIgnoreStart
             return true;

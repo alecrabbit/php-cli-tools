@@ -13,6 +13,6 @@ services:
     - ./:/var/www
     - ./../../libraries:/var/packages
     environment:
-      DOCKER_TERM: "$TERM" # passed host $TERM variable
-      COLORTERM: "$COLORTERM" # passed host $COLORTERM variable
+      DOCKER_TERM: "${TERM:-}"      # pass host $TERM variable
+      COLORTERM: "${COLORTERM:-}"   # pass host $COLORTERM variable
     command: keep-alive.sh

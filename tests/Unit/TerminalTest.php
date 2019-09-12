@@ -19,7 +19,7 @@ class TerminalTest extends TestCase
     public function basic(array $expected): void
     {
         [$width, $height, $color] = $expected;
-        $terminal = new Terminal($width, $height, $color);
+        $terminal = new Terminal($color, $width, $height);
         $this->assertSame($width, $terminal->width());
         $this->assertSame($height, $terminal->height());
         $this->assertSame($color, $terminal->color());
@@ -33,7 +33,7 @@ class TerminalTest extends TestCase
     public function nullable(array $expected): void
     {
         [$width, $height, $color] = $expected;
-        $terminal = new Terminal($width, $height, $color);
+        $terminal = new Terminal($color, $width, $height);
         $this->assertIsInt($terminal->width());
         $this->assertIsInt($terminal->height());
         $this->assertIsInt($terminal->color());
@@ -82,7 +82,7 @@ class TerminalTest extends TestCase
         [$exceptionClass, $expectedExceptionMessage] = $expected;
         $this->expectException($exceptionClass);
         $this->expectExceptionMessage($expectedExceptionMessage);
-        new Terminal($width, $height, $color);
+        new Terminal($color, $width, $height);
     }
 
     public function throwsDataProvider(): array
