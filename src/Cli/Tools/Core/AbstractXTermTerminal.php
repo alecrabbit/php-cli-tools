@@ -4,10 +4,8 @@ namespace AlecRabbit\Cli\Tools\Core;
 
 use AlecRabbit\Cli\Tools\EnvCheck;
 
-abstract class AbstractColorSupportingTerminal extends AbstractTerminal
+abstract class AbstractXTermTerminal extends AbstractTerminal
 {
-    /** @var null|bool */
-    protected static $supportsColor;
     /** @var null|bool */
     protected static $isXterm;
 

@@ -3,7 +3,7 @@
 namespace AlecRabbit\Cli;
 
 use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
-use AlecRabbit\Cli\Tools\Core\TerminalStatic;
+use AlecRabbit\Cli\Tools\Core\Terminal as StaticTerminal;
 use function AlecRabbit\Helpers\inRange;
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 
@@ -35,7 +35,7 @@ class Terminal implements TerminalInterface
     protected function refineWidth(?int $width): int
     {
         $this->assertWidth($width);
-        return $width ?? TerminalStatic::width();
+        return $width ?? StaticTerminal::width();
     }
 
     protected function assertWidth(?int $width): void
@@ -52,7 +52,7 @@ class Terminal implements TerminalInterface
     protected function refineHeight(?int $height): int
     {
         $this->assertHeight($height);
-        return $height ?? TerminalStatic::height();
+        return $height ?? StaticTerminal::height();
     }
 
     protected function assertHeight(?int $height): void
@@ -69,7 +69,7 @@ class Terminal implements TerminalInterface
     protected function refineColorSupport(?int $colorSupport): int
     {
         $this->assertColorSupport($colorSupport);
-        return $colorSupport ?? TerminalStatic::colorSupport();
+        return $colorSupport ?? StaticTerminal::colorSupport();
     }
 
     /**

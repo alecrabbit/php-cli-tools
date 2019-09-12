@@ -2,15 +2,14 @@
 
 namespace AlecRabbit\Tests\ConsoleColour;
 
-use AlecRabbit\Cli\Tools\Core\TerminalStatic;
+use AlecRabbit\Cli\Tools\Core\Terminal;
 use AlecRabbit\Cli\Tools\EnvCheck;
 use AlecRabbit\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use function AlecRabbit\Helpers\callMethod;
 use const AlecRabbit\COLOR256_TERMINAL;
-use const AlecRabbit\NO_COLOR_TERMINAL;
 
-class TerminalStaticTest extends TestCase
+class StaticTerminalTest extends TestCase
 {
     /** @test */
     public function basic(): void
@@ -18,16 +17,16 @@ class TerminalStaticTest extends TestCase
         putenv('COLUMNS=100');
         putenv('LINES=50');
 
-        $this->assertSame(100, TerminalStatic::width());
-        $this->assertSame(50, TerminalStatic::height());
+        $this->assertSame(100, Terminal::width());
+        $this->assertSame(50, Terminal::height());
 
         putenv('COLUMNS=120');
         putenv('LINES=60');
 
-        $this->assertNotEquals(120, TerminalStatic::width());
-        $this->assertNotEquals(60, TerminalStatic::height());
-        $this->assertSame(120, TerminalStatic::width(true));
-        $this->assertSame(60, TerminalStatic::height(true));
+        $this->assertNotEquals(120, Terminal::width());
+        $this->assertNotEquals(60, Terminal::height());
+        $this->assertSame(120, Terminal::width(true));
+        $this->assertSame(60, Terminal::height(true));
     }
 
     /** @test */
@@ -36,16 +35,16 @@ class TerminalStaticTest extends TestCase
         putenv('COLUMNS=0');
         putenv('LINES=0');
 
-        $this->assertNotEquals(0, TerminalStatic::width());
-        $this->assertNotEquals(0, TerminalStatic::height());
-        $this->assertSame(0, TerminalStatic::width(true));
-        $this->assertSame(0, TerminalStatic::height(true));
+        $this->assertNotEquals(0, Terminal::width());
+        $this->assertNotEquals(0, Terminal::height());
+        $this->assertSame(0, Terminal::width(true));
+        $this->assertSame(0, Terminal::height(true));
     }
 
     /** @test */
     public function colorSupport(): void
     {
-        $colorLevel = TerminalStatic::colorSupport(STDOUT);
+        $colorLevel = Terminal::colorSupport(STDOUT);
         $this->assertIsInt($colorLevel);
         if ($this->checkTermVarFor256ColorSupport('TERM') ||
             $this->checkTermVarFor256ColorSupport('DOCKER_TERM')) {
@@ -56,6 +55,7 @@ class TerminalStaticTest extends TestCase
         $this->assertFalse(
             callMethod(EnvCheck::class, 'checkEnvVariable', 'UNKNOWN_VAR', 'value')
         );
+        $this->assertSame($colorLevel, Terminal::colorSupport(STDOUT));
     }
 
     /**
@@ -78,19 +78,19 @@ class TerminalStaticTest extends TestCase
         if (($t = getenv('TERM')) && (false !== strpos($t, 'xterm'))) {
             $this->assertEquals(
                 Helper::stripEscape("\033]0;{$title}\007"),
-                Helper::stripEscape(TerminalStatic::setTitle($title))
+                Helper::stripEscape(Terminal::setTitle($title))
             );
             $this->assertEquals(
                 "\033]0;{$title}\007",
-                TerminalStatic::setTitle($title)
+                Terminal::setTitle($title)
             );
         } else {
             $this->assertEquals(
                 '',
-                TerminalStatic::setTitle($title)
+                Terminal::setTitle($title)
             );
         }
-        
+
     }
 
 }

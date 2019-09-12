@@ -14,7 +14,7 @@ use const AlecRabbit\TRUECOLOR_TERMINAL;
  * Class Terminal
  * @author AlecRabbit
  */
-class TerminalStatic extends AbstractColorSupportingTerminal implements TerminalStaticInterface
+class Terminal extends AbstractXTermTerminal implements TerminalStaticInterface
 {
 
     /** {@inheritdoc} */
@@ -49,7 +49,7 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
     {
         $colorSupport = NO_COLOR_TERMINAL;
 
-        if (static::supportsColor(true, $stream)) {
+        if (Stream::hasColorSupport($stream)) {
             $colorSupport = COLOR_TERMINAL;
             if (EnvCheck::has256ColorSupport()) {
                 $colorSupport = COLOR256_TERMINAL;
@@ -60,34 +60,4 @@ class TerminalStatic extends AbstractColorSupportingTerminal implements Terminal
         }
         return $colorSupport;
     }
-
-    /** {@inheritdoc} */
-    protected static function supportsColor(bool $recheck = false, $stream = null): bool
-    {
-        if (null !== static::$supportsColor && false === $recheck) {
-            return static::$supportsColor;
-        }
-        return
-            static::$supportsColor = Stream::hasColorSupport($stream);
-    }
-
-//    /** {@inheritdoc} */
-//    public static function supports256Color(bool $recheck = false): bool
-//    {
-//        if (null !== static::$supports256Color && true !== $recheck) {
-//            return static::$supports256Color;
-//        }
-//        return
-//            static::$supports256Color = static::has256ColorSupport();
-//    }
-//
-//    /** {@inheritdoc} */
-//    public static function supportsTrueColor(bool $recheck = false): bool
-//    {
-//        if (null !== static::$supportsTrueColor && true !== $recheck) {
-//            return static::$supportsTrueColor;
-//        }
-//        return
-//            static::$supportsTrueColor = static::hasTrueColorSupport();
-//    }
 }
