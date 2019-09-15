@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
-use function AlecRabbit\onWindows;
+use function AlecRabbit\Helpers\onWindows;
 use const AlecRabbit\ENV_ANSICON;
 
 /**

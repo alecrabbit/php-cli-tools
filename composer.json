@@ -17,7 +17,7 @@
     "php": ">=7.2"
   },
   "require-dev": {
-    "alecrabbit/php-helpers": "^0.6",
+    "alecrabbit/php-helpers": "^0.7 || ^0.8 ",
     "nunomaduro/collision": "^3.0",
     "phpunit/phpunit": "^8.0",
     "symfony/var-dumper": "^4.2"

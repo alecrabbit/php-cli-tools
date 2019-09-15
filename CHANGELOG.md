@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="0.3.0-ALPHA.1"></a>
+## [0.3.0-ALPHA.1] - 2019-09-12
+
+<a name="0.3.0-ALPHA.0"></a>
+## [0.3.0-ALPHA.0] - 2019-09-12
 ### Added
 - `truecolor` support detection
 - new function `onWindows()`
@@ -65,7 +71,9 @@ All notable changes to this project will be documented in this file.
 <a name="0.0.0"></a>
 ## 0.0.0 - 2019-04-15
 
-[Unreleased]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.2.0-ALPHA.1...HEAD
+[Unreleased]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.3.0-ALPHA.1...HEAD
+[0.3.0-ALPHA.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.3.0-ALPHA.0...0.3.0-ALPHA.1
+[0.3.0-ALPHA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.2.0-ALPHA.1...0.3.0-ALPHA.0
 [0.2.0-ALPHA.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.2.0-ALPHA.0...0.2.0-ALPHA.1
 [0.2.0-ALPHA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.1.5...0.2.0-ALPHA.0
 [0.1.5]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.1.4...0.1.5

@@ -8,6 +8,7 @@ use AlecRabbit\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use function AlecRabbit\Helpers\callMethod;
 use const AlecRabbit\COLOR256_TERMINAL;
+use const AlecRabbit\TRUECOLOR_TERMINAL;
 
 class StaticTerminalTest extends TestCase
 {
@@ -52,6 +53,11 @@ class StaticTerminalTest extends TestCase
         } else {
             $this->assertFalse($colorLevel >= COLOR256_TERMINAL);
         }
+        if ($this->checkTermVarForTruecolorSupport('COLORTERM')) {
+            $this->assertTrue($colorLevel >= TRUECOLOR_TERMINAL);
+        } else {
+            $this->assertFalse($colorLevel >= TRUECOLOR_TERMINAL);
+        }
         $this->assertFalse(
             callMethod(EnvCheck::class, 'checkEnvVariable', 'UNKNOWN_VAR', 'value')
         );
@@ -67,6 +73,19 @@ class StaticTerminalTest extends TestCase
         if ($t = getenv($varName)) {
             return
                 false !== strpos($t, '256color');
+        }
+        return false;
+    }
+
+    /**
+     * @param string $varName
+     * @return bool
+     */
+    protected function checkTermVarForTruecolorSupport(string $varName): bool
+    {
+        if ($t = getenv($varName)) {
+            return
+                false !== strpos($t, 'truecolor');
         }
         return false;
     }

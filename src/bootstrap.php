@@ -40,13 +40,3 @@ define(
         NO_COLOR_TERMINAL => 'NO COLOR',
     ]
 );
-
-if (!\function_exists('onWindows')) {
-    /**
-     * @return bool
-     */
-    function onWindows(): bool
-    {
-        return '\\' === \DIRECTORY_SEPARATOR;
-    }
-}

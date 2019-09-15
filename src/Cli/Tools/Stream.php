@@ -2,7 +2,7 @@
 
 namespace AlecRabbit\Cli\Tools;
 
-use function AlecRabbit\onWindows;
+use function AlecRabbit\Helpers\onWindows;
 use const AlecRabbit\ENV_ANSICON;
 use const AlecRabbit\ENV_CON_EMU_ANSI;
 use const AlecRabbit\ENV_TERM;
