@@ -3,6 +3,7 @@ README.md export-ignore
 TERMINAL_TITLE export-ignore
 TODO.md export-ignore
 /build export-ignore
+composer.lock export-ignore
 docker-compose-debug.yml export-ignore
 docker-compose.yml export-ignore
 /docs export-ignore
