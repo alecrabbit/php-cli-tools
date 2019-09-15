@@ -21,7 +21,7 @@ class Terminal extends AbstractXTermTerminal implements StaticTerminalInterface
     public static function setTitle(string $title): string
     {
         return
-            static::isXterm()? "\033]0;{$title}\007" : '';
+            static::isXterm() ? "\033]0;{$title}\007" : '';
     }
 
     /** {@inheritdoc} */
@@ -48,7 +48,9 @@ class Terminal extends AbstractXTermTerminal implements StaticTerminalInterface
     public static function colorSupport($stream = null): int
     {
         $colorSupport = NO_COLOR_TERMINAL;
-
+        if (false === $stream) {
+            return $colorSupport;
+        }
         if (Stream::hasColorSupport($stream)) {
             $colorSupport = COLOR_TERMINAL;
             if (EnvCheck::has256ColorSupport()) {

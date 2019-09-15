@@ -8,6 +8,7 @@ use AlecRabbit\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use function AlecRabbit\Helpers\callMethod;
 use const AlecRabbit\COLOR256_TERMINAL;
+use const AlecRabbit\NO_COLOR_TERMINAL;
 use const AlecRabbit\TRUECOLOR_TERMINAL;
 
 class StaticTerminalTest extends TestCase
@@ -62,6 +63,15 @@ class StaticTerminalTest extends TestCase
             callMethod(EnvCheck::class, 'checkEnvVariable', 'UNKNOWN_VAR', 'value')
         );
         $this->assertSame($colorLevel, Terminal::colorSupport(STDOUT));
+        $this->assertSame(NO_COLOR_TERMINAL, Terminal::colorSupport(false));
+    }
+
+    /** @test */
+    public function colorSupportException(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Expecting parameter 1 to be resource, integer given');
+        $this->assertSame(NO_COLOR_TERMINAL, Terminal::colorSupport(1));
     }
 
     /**
