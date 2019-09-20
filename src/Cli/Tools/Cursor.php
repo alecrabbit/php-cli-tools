@@ -5,6 +5,12 @@ namespace AlecRabbit\Cli\Tools;
 use const AlecRabbit\CSI;
 use const AlecRabbit\ESC;
 
+/**
+ * Class Cursor
+ *
+ * @link https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences
+ * @link https://www.xfree86.org/4.8.0/ctlseqs.html
+ */
 class Cursor
 {
     /**
@@ -14,7 +20,8 @@ class Cursor
      */
     public static function show(): string
     {
-        return CSI . '?25h' . CSI . '?0c';
+//        return CSI . '?25h' . CSI . '?0c';
+        return CSI . '?25h';
     }
 
     /**
