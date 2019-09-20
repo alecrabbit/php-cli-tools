@@ -7,6 +7,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="0.4.2-BETA.0"></a>
+## [0.4.2-BETA.0] - 2019-09-20
+### Changed
+- show cursor sequence
+
+
+<a name="0.4.1"></a>
+## [0.4.1] - 2019-09-15
+
+<a name="0.4.1-ALPHA.0"></a>
+## [0.4.1-ALPHA.0] - 2019-09-15
+
+<a name="0.4.0-ALPHA.1"></a>
+## [0.4.0-ALPHA.1] - 2019-09-15
+
 <a name="0.3.0-ALPHA.1"></a>
 ## [0.3.0-ALPHA.1] - 2019-09-12
 
@@ -71,7 +86,11 @@ All notable changes to this project will be documented in this file.
 <a name="0.0.0"></a>
 ## 0.0.0 - 2019-04-15
 
-[Unreleased]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.3.0-ALPHA.1...HEAD
+[Unreleased]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.2-BETA.0...HEAD
+[0.4.2-BETA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.1...0.4.2-BETA.0
+[0.4.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.1-ALPHA.0...0.4.1
+[0.4.1-ALPHA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.0-ALPHA.1...0.4.1-ALPHA.0
+[0.4.0-ALPHA.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.3.0-ALPHA.1...0.4.0-ALPHA.1
 [0.3.0-ALPHA.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.3.0-ALPHA.0...0.3.0-ALPHA.1
 [0.3.0-ALPHA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.2.0-ALPHA.1...0.3.0-ALPHA.0
 [0.2.0-ALPHA.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.2.0-ALPHA.0...0.2.0-ALPHA.1
