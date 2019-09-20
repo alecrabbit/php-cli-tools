@@ -59,7 +59,8 @@ class CursorTest extends TestCase
         $this->assertEquals("\033[1M", Line::delete(1));
         $this->assertEquals("\033[2L", Line::insert(2));
         $this->assertEquals("\033[2M", Line::delete(2));
-        $this->assertEquals("\033[?25h\033[?0c", Cursor::show());
+        $this->assertEquals("\033[?25h", Cursor::show());
+//        $this->assertEquals("\033[?25h\033[?0c", Cursor::show());
         $this->assertEquals("\033[?25l", Cursor::hide());
         $this->assertEquals("\033[1A", Cursor::up());
         $this->assertEquals("\033[3A", Cursor::up(3));
@@ -113,7 +114,8 @@ class CursorTest extends TestCase
             ["\033[1M", Line::delete(1)],
             ["\033[2L", Line::insert(2)],
             ["\033[2M", Line::delete(2)],
-            ["\033[?25h\033[?0c", Cursor::show()],
+            ["\033[?25h", Cursor::show()],
+//            ["\033[?25h\033[?0c", Cursor::show()],
             ["\033[?25l", Cursor::hide()],
             ["\033[1A", Cursor::up()],
             ["\033[3A", Cursor::up(3)],
