@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Removed
+- `alecrabbit/php-helpers` dependency
+
+
+<a name="0.5.0"></a>
+## [0.5.0] - 2019-09-23
+
+<a name="0.5.0-BETA.0"></a>
+## [0.5.0-BETA.0] - 2019-09-20
 
 <a name="0.4.2-BETA.0"></a>
 ## [0.4.2-BETA.0] - 2019-09-20
@@ -86,7 +95,9 @@ All notable changes to this project will be documented in this file.
 <a name="0.0.0"></a>
 ## 0.0.0 - 2019-04-15
 
-[Unreleased]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.2-BETA.0...HEAD
+[Unreleased]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.5.0...HEAD
+[0.5.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.5.0-BETA.0...0.5.0
+[0.5.0-BETA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.2-BETA.0...0.5.0-BETA.0
 [0.4.2-BETA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.1...0.4.2-BETA.0
 [0.4.1]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.1-ALPHA.0...0.4.1
 [0.4.1-ALPHA.0]: https://github.com/alecrabbit/php-cli-tools.git/compare/0.4.0-ALPHA.1...0.4.1-ALPHA.0
