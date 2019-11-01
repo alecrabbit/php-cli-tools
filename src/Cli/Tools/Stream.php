@@ -2,7 +2,6 @@
 
 namespace AlecRabbit\Cli\Tools;
 
-use function AlecRabbit\Helpers\onWindows;
 use const AlecRabbit\ENV_ANSICON;
 use const AlecRabbit\ENV_CON_EMU_ANSI;
 use const AlecRabbit\ENV_TERM;
@@ -40,7 +39,7 @@ class Stream
         }
 
         // @codeCoverageIgnoreStart
-        if (onWindows()) {
+        if ('\\' === \DIRECTORY_SEPARATOR) {
             return static::checkWindowsColorSupport($stream);
         }
         // @codeCoverageIgnoreEnd
@@ -65,7 +64,7 @@ class Stream
      */
     protected static function refineStream($stream = null)
     {
-        $stream = $stream ?? STDOUT;
+        $stream = $stream ?? \STDOUT;
         self::assertStream($stream);
         return $stream;
     }

@@ -2,7 +2,6 @@
 
 namespace AlecRabbit\Cli\Tools\Core;
 
-use function AlecRabbit\Helpers\onWindows;
 use const AlecRabbit\ENV_ANSICON;
 
 /**
@@ -34,7 +33,7 @@ abstract class AbstractTerminal
      */
     protected static function initDimensions(): void
     {
-        if (onWindows()) {
+        if ('\\' === \DIRECTORY_SEPARATOR) {
             self::initDimensionsWindows();
         } elseif ($sttyString = static::getSttyColumns()) {
             self::initDimensionsUnix($sttyString);
