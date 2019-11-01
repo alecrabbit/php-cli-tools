@@ -20,7 +20,6 @@ class Cursor
      */
     public static function show(): string
     {
-//        return CSI . '?25h' . CSI . '?0c';
         return CSI . '?25h';
     }
 
