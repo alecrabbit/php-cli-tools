@@ -11,33 +11,22 @@ use const AlecRabbit\XTERM;
 
 class EnvCheck
 {
-    /**
-     * @return bool
-     */
-    public static function isXterm(): bool
+    public static function isXTerm(): bool
     {
         return
             static::checkEnvVariable(ENV_TERM, XTERM) ||
             static::checkEnvVariable(ENV_DOCKER_TERM, XTERM);
     }
 
-    /**
-     * @param string $varName
-     * @param string $checkFor
-     * @return bool
-     */
     protected static function checkEnvVariable(string $varName, string $checkFor): bool
     {
         if ($t = getenv($varName)) {
             return
-                false !== strpos($t, $checkFor);
+                str_contains($t, $checkFor);
         }
         return false;
     }
 
-    /**
-     * @return bool
-     */
     public static function has256ColorSupport(): bool
     {
         return
@@ -45,9 +34,6 @@ class EnvCheck
             static::checkEnvVariable(ENV_DOCKER_TERM, NEEDLE_256_COLOR);
     }
 
-    /**
-     * @return bool
-     */
     public static function hasTrueColorSupport(): bool
     {
         return

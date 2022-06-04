@@ -4,7 +4,11 @@
 /tests/tmp/
 /tests/report.html
 /*.cache
-/composer.lock
 /.env
 /build/
-/out.txt
+out.txt
+
+docker-stack.yml
+.env
+.start_time
+.last_init_time

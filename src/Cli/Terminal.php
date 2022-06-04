@@ -1,25 +1,26 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace AlecRabbit\Cli;
 
 use AlecRabbit\Cli\Tools\Core\Contracts\TerminalInterface;
 use AlecRabbit\Cli\Tools\Core\Terminal as StaticTerminal;
+
 use function AlecRabbit\Helpers\inRange;
+
 use const AlecRabbit\ALLOWED_COLOR_TERMINAL;
 
 class Terminal implements TerminalInterface
 {
     protected const MIN_WIDTH = 20;
     protected const MAX_WIDTH = 280;
+
     protected const MIN_HEIGHT = 20;
     protected const MAX_HEIGHT = 80;
 
-    /** @var int */
-    protected $width;
-    /** @var int */
-    protected $height;
-    /** @var int */
-    protected $color;
+    protected int $width;
+    protected int $height;
+    protected int $color;
 
     public function __construct(?int $colorSupport = null, ?int $width = null, ?int $height = null)
     {
@@ -28,10 +29,6 @@ class Terminal implements TerminalInterface
         $this->color = $this->refineColorSupport($colorSupport);
     }
 
-    /**
-     * @param int $width
-     * @return int
-     */
     protected function refineWidth(?int $width): int
     {
         $this->assertWidth($width);
@@ -45,10 +42,11 @@ class Terminal implements TerminalInterface
         }
     }
 
-    /**
-     * @param int $height
-     * @return int
-     */
+    public function width(): int
+    {
+        return $this->width;
+    }
+
     protected function refineHeight(?int $height): int
     {
         $this->assertHeight($height);
@@ -62,19 +60,17 @@ class Terminal implements TerminalInterface
         }
     }
 
-    /**
-     * @param int $colorSupport
-     * @return int
-     */
+    public function height(): int
+    {
+        return $this->height;
+    }
+
     protected function refineColorSupport(?int $colorSupport): int
     {
         $this->assertColorSupport($colorSupport);
         return $colorSupport ?? StaticTerminal::colorSupport();
     }
 
-    /**
-     * @param int $colorSupport
-     */
     protected function assertColorSupport(?int $colorSupport): void
     {
         if (null !== $colorSupport && !\in_array($colorSupport, ALLOWED_COLOR_TERMINAL, true)) {
@@ -82,25 +78,6 @@ class Terminal implements TerminalInterface
         }
     }
 
-    /**
-     * @return int
-     */
-    public function width(): int
-    {
-        return $this->width;
-    }
-
-    /**
-     * @return int
-     */
-    public function height(): int
-    {
-        return $this->height;
-    }
-
-    /**
-     * @return int
-     */
     public function color(): int
     {
         return $this->color;
