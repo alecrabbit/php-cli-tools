@@ -50,7 +50,6 @@ class Stream
 
         // @codeCoverageIgnoreStart
         if (\function_exists('posix_isatty')) {
-            /** @noinspection PhpComposerExtensionStubsInspection */
             return @posix_isatty($stream);
         }
 
@@ -104,6 +103,7 @@ class Stream
     {
         $stat = @fstat($stream);
         // Check if formatted mode is S_IFCHR
-        return $stat ? 0020000 === ($stat['mode'] & 0170000) : false;
+        return is_array($stat) && 0020000 === ($stat['mode'] & 0170000);
+//        return $stat ? 0020000 === ($stat['mode'] & 0170000) : false;
     }
 }
